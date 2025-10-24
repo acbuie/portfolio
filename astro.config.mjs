@@ -5,7 +5,7 @@ import expressiveCode from "astro-expressive-code";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://acbuie.github.io",
+  site: "https://aidanbuie.com",
 
   vite: {
     plugins: [tailwindcss()],
