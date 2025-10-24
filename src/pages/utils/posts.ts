@@ -27,3 +27,7 @@ export function arrangePostCollection(
     })
     .sort((a, b) => parseInt(b.year) - parseInt(a.year));
 }
+
+export function getTags(rawPosts: CollectionEntry<"blogPosts">[]) {
+  return [...new Set(rawPosts.map((post) => post.data.tags).flat())];
+}

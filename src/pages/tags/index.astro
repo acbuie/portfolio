@@ -1,9 +1,12 @@
 ---
 import { getCollection } from "astro:content";
+
+import { getTags } from "../utils/posts";
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const rawPosts = await getCollection("blogPosts");
-const tags = [...new Set(rawPosts.map((post) => post.data.tags).flat())];
+const tags = getTags(rawPosts);
 const pageTitle = "Tag Index";
 ---
 
