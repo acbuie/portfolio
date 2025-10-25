@@ -11,12 +11,12 @@ interface Props {
 const { postsArray } = Astro.props;
 ---
 
-<ul>
+<ol>
   {
     postsArray.map((d) => (
       <>
         <h2 class="text-4xl my-5">{d.year}</h2>
-        <ul class="text-xl grid grid-cols-[auto_8rem] gap-y-3">
+        <ol class="text-xl grid grid-cols-[auto_8rem] gap-y-3">
           {d.posts.map((p) => (
             <>
               <li>
@@ -30,8 +30,8 @@ const { postsArray } = Astro.props;
               </span>
             </>
           ))}
-        </ul>
+        </ol>
       </>
     ))
   }
-</ul>
+</ol>
