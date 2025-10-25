@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+
+import { arrangePostCollection, getTags } from "@/utils/posts";
+import { capitalize } from "@/utils/utils";
+
+import Page from "@/layouts/Page.astro";
+import PostsList from "@/components/PostsList.astro";
+import TagArchive from "@/components/TagArchive.astro";
+
+export async function getStaticPaths() {
+  const rawPosts = await getCollection("blogPosts");
+  const tags = getTags(rawPosts);
+
+  return tags.map((tag) => {
+    const filteredPosts = rawPosts.filter((post) =>
+      post.data.tags.includes(tag),
+    );
+
+    const postsArray = arrangePostCollection(filteredPosts);
+
+    return {
+      params: { tag },
+      props: { postsArray: postsArray },
+    };
+  });
+}
+
+const { postsArray } = Astro.props;
+const { tag } = Astro.params;
+---
+
+<Page
+  pageTitle={`${capitalize(tag)} | Aidan Buie`}
+  bannerTitle={capitalize(tag)}
+>
+  <PostsList postsArray={postsArray} />
+  <TagArchive />
+</Page>

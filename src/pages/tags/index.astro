@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+
+import { getTags } from "@/utils/posts";
+
+import Page from "@/layouts/Page.astro";
+
+const rawPosts = await getCollection("blogPosts");
+const tags = getTags(rawPosts);
+---
+
+<Page pageTitle="Tag Archive | Aidan Buie" bannerTitle="Tag Archive">
+  <ul class="text-xl">
+    {
+      tags.sort().map((tag) => (
+        <li class="my-2">
+          <a href={`/tags/${tag}`}>
+            <i class="fa-solid fa-tag text-sm text-gruv-yellow" />
+            {tag}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Page>
