@@ -3,13 +3,12 @@ import { getCollection } from "astro:content";
 
 import { getTags } from "../utils/posts";
 
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import Page from "@/layouts/Page.astro";
 
 const rawPosts = await getCollection("blogPosts");
 const tags = getTags(rawPosts);
-const pageTitle = "Tag Index";
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<Page pageTitle="Tag Archive | Aidan Buie" bannerTitle="Tag Archive">
   <div>{tags.map((tag) => <p>{tag}</p>)}</div>
-</BaseLayout>
+</Page>

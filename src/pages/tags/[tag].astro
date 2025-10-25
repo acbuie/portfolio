@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 
 import { arrangePostCollection, getTags } from "../utils/posts";
 
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import Page from "@/layouts/Page.astro";
 import PostsList from "@/components/PostsList.astro";
 
 export async function getStaticPaths() {
@@ -28,7 +28,6 @@ const { postsArray } = Astro.props;
 const { tag } = Astro.params;
 ---
 
-<BaseLayout pageTitle={tag}>
-  <p>Posts tagged with {tag}</p>
+<Page pageTitle={`${tag} | Aidan Buie`} bannerTitle={`#${tag}`}>
   <PostsList postsArray={postsArray} />
-</BaseLayout>
+</Page>
