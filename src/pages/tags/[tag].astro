@@ -5,6 +5,7 @@ import { arrangePostCollection, getTags } from "../utils/posts";
 
 import Page from "@/layouts/Page.astro";
 import PostsList from "@/components/PostsList.astro";
+import TagArchive from "@/components/TagArchive.astro";
 
 export async function getStaticPaths() {
   const rawPosts = await getCollection("blogPosts");
@@ -30,10 +31,5 @@ const { tag } = Astro.params;
 
 <Page pageTitle={`${tag} | Aidan Buie`} bannerTitle={`#${tag}`}>
   <PostsList postsArray={postsArray} />
-  <div class="my-5 text-lg">
-    <a href="/tags/">
-      <i class="fa-solid fa-tags"> </i>
-      Tag Archive
-    </a>
-  </div>
+  <TagArchive />
 </Page>
