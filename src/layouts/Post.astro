@@ -44,7 +44,10 @@ const { frontmatter } = Astro.props;
           {
             frontmatter.tags.sort().map((t) => (
               <li class="text-gruv-yellow">
-                <a href={`/tags/${t}`}>#{t}</a>
+                <a href={`/tags/${t}`}>
+                  <i class="fa-solid fa-tag text-sm" />
+                  {t}
+                </a>
               </li>
             ))
           }

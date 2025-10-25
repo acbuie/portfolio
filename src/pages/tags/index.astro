@@ -10,11 +10,14 @@ const tags = getTags(rawPosts);
 ---
 
 <Page pageTitle="Tag Archive | Aidan Buie" bannerTitle="Tag Archive">
-  <ul class="list-disc list-inside text-xl">
+  <ul class="text-xl">
     {
       tags.sort().map((tag) => (
         <li class="my-2">
-          <a href={`/tags/${tag}`}>{`#${tag}`}</a>
+          <a href={`/tags/${tag}`}>
+            <i class="fa-solid fa-tag text-sm text-gruv-yellow" />
+            {tag}
+          </a>
         </li>
       ))
     }
