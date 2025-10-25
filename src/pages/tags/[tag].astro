@@ -30,4 +30,14 @@ const { tag } = Astro.params;
 
 <Page pageTitle={`${tag} | Aidan Buie`} bannerTitle={`#${tag}`}>
   <PostsList postsArray={postsArray} />
+  <div class="flex flex-col mt-5 gap-y-2 text-lg">
+    <a href="/tags/">
+      <i class="fa-solid fa-arrow-left"> </i>
+      Tag Archive
+    </a>
+    <a href="/blog/">
+      <i class="fa-solid fa-arrow-left"> </i>
+      Musings
+    </a>
+  </div>
 </Page>

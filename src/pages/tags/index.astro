@@ -10,5 +10,13 @@ const tags = getTags(rawPosts);
 ---
 
 <Page pageTitle="Tag Archive | Aidan Buie" bannerTitle="Tag Archive">
-  <div>{tags.map((tag) => <p>{tag}</p>)}</div>
+  <ul class="list-disc list-inside text-xl">
+    {
+      tags.map((tag) => (
+        <li class="my-2">
+          <a href={`/tags/${tag}`}>{`#${tag}`}</a>
+        </li>
+      ))
+    }
+  </ul>
 </Page>
