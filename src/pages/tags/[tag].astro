@@ -28,12 +28,11 @@ export async function getStaticPaths() {
 
 const { postsArray } = Astro.props;
 const { tag } = Astro.params;
+
+const pageTitle = `${capitalize(tag)} | Aidan Buie`;
 ---
 
-<Page
-  pageTitle={`${capitalize(tag)} | Aidan Buie`}
-  bannerTitle={capitalize(tag)}
->
+<Page pageTitle={pageTitle} bannerTitle={capitalize(tag)}>
   <PostsList postsArray={postsArray} />
   <TagArchive />
 </Page>
