@@ -3,9 +3,9 @@ import { getCollection } from "astro:content";
 
 import { arrangePostCollection } from "@/utils/posts";
 
-import Page from "@/layouts/Page.astro";
 import PostsList from "@/components/PostsList.astro";
 import TagArchive from "@/components/TagArchive.astro";
+import Page from "@/layouts/Page.astro";
 
 const rawPosts = await getCollection("blogPosts");
 const postsArray = arrangePostCollection(rawPosts);

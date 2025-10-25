@@ -1,7 +1,7 @@
 ---
-import BaseHead from "@/layouts/BaseHead.astro";
-import Header from "@/components/Header/Header.astro";
 import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header/Header.astro";
+import BaseHead from "@/layouts/BaseHead.astro";
 
 interface Props {
   pageTitle: string;
@@ -16,11 +16,11 @@ const { pageTitle } = Astro.props;
     <BaseHead pageTitle={pageTitle} />
   </head>
   <body
-    class="text-primary bg-bg subpixel-antialiased selection:bg-gruv-aqua selection:text-primary w-screen min-h-screen overflow-x-hidden flex flex-col"
+    class="text-primary bg-bg selection:bg-gruv-aqua selection:text-primary flex min-h-screen w-screen flex-col overflow-x-hidden subpixel-antialiased"
   >
     <Header />
     <main
-      class="px-5 md:px-10 lg:px-25 xl:px-50 mb-40 grow has-[div#hero]:flex has-[div#hero]:justify-center"
+      class="mb-40 grow px-5 has-[div#hero]:flex has-[div#hero]:justify-center md:px-10 lg:px-25 xl:px-50"
     >
       <slot />
     </main>

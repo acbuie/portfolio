@@ -202,14 +202,12 @@ That means I have to worry about styling that annoying situation too.
 - **For example, here's another nested list.**
 
   But this time with a second paragraph.
-
   - These list items won't have `<p>` tags
   - Because they are only one line each
 
 - **But in this second top-level list item, they will.**
 
   This is especially annoying because of the spacing on this paragraph.
-
   - As you can see here, because I've added a second line, this list item now
     has a `<p>` tag.
 
