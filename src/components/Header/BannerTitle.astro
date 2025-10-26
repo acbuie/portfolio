@@ -1,0 +1,12 @@
+---
+interface Props {
+  bannerTitle: string;
+}
+
+const { bannerTitle } = Astro.props;
+---
+
+<div class="mb-5 flex items-center">
+  <h1 class="flex-none text-2xl md:text-4xl">{bannerTitle}</h1>
+  <span class="bg-bg-accent ml-5 flex h-0.5 grow"></span>
+</div>
