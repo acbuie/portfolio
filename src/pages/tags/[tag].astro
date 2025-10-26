@@ -4,9 +4,9 @@ import { getCollection } from "astro:content";
 import { arrangePostCollection, getTags } from "@/utils/posts";
 import { capitalize } from "@/utils/utils";
 
-import Page from "@/layouts/Page.astro";
 import PostsList from "@/components/PostsList.astro";
 import TagArchive from "@/components/TagArchive.astro";
+import Page from "@/layouts/Page.astro";
 
 export async function getStaticPaths() {
   const rawPosts = await getCollection("blogPosts");
@@ -28,12 +28,11 @@ export async function getStaticPaths() {
 
 const { postsArray } = Astro.props;
 const { tag } = Astro.params;
+
+const pageTitle = `${capitalize(tag)} | Aidan Buie`;
 ---
 
-<Page
-  pageTitle={`${capitalize(tag)} | Aidan Buie`}
-  bannerTitle={capitalize(tag)}
->
+<Page pageTitle={pageTitle} bannerTitle={capitalize(tag)}>
   <PostsList postsArray={postsArray} />
   <TagArchive />
 </Page>
