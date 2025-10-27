@@ -16,10 +16,12 @@ const { pageTitle } = Astro.props;
     <BaseHead pageTitle={pageTitle} />
   </head>
   <body
-    class="text-primary bg-bg selection:bg-gruv-aqua selection:text-primary min-h-screen w-screen overflow-x-hidden subpixel-antialiased"
+    class="text-primary bg-bg selection:bg-gruv-aqua selection:text-primary flex min-h-screen w-screen flex-col overflow-x-hidden subpixel-antialiased"
   >
     <Header />
-    <main class="mb-40 grow px-5 md:px-10 lg:px-25 xl:px-50">
+    <main
+      class="mb-40 grow px-5 has-[div#hero]:flex has-[div#hero]:justify-center md:px-10 lg:px-25 xl:px-50"
+    >
       <slot />
     </main>
     <Footer />

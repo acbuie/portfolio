@@ -1,50 +1,19 @@
 ---
-import Footer from "@/components/Footer.astro";
-import Header from "@/components/Header/Header.astro";
-import BaseHead from "@/layouts/BaseHead.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const pageTitle = "Aidan Buie";
 ---
 
-<!doctype html>
-<html lang="en" class="relative min-h-[100%]">
-  <head>
-    <BaseHead pageTitle={pageTitle} />
-  </head>
-  <body
-    class="text-primary bg-bg selection:bg-gruv-aqua selection:text-primary flex min-h-screen w-screen flex-col overflow-x-hidden subpixel-antialiased"
-  >
-    <Header />
-    <!-- <div -->
-    <!--   aria-hidden="true" -->
-    <!--   class="absolute -z-1 h-screen w-screen overflow-hidden" -->
-    <!-- > -->
-    <!--   <svg -->
-    <!--     height="10" -->
-    <!--     width="10" -->
-    <!--     class="fill-gruv-yellow absolute left-[1.9vw]" -->
-    <!--   > -->
-    <!--     <circle cx="5" cy="5" r="4"></circle> -->
-    <!--   </svg> -->
-    <!--   <svg height="10" width="10" class="fill-gruv-red absolute left-[1.1vw]"> -->
-    <!--     <circle cx="5" cy="5" r="2"></circle> -->
-    <!--   </svg> -->
-
-    <main
-      class="mb-40 flex grow justify-center px-5 md:px-10 lg:px-25 xl:px-50"
-    >
-      <div class="flex items-center justify-center font-bold">
-        <div>
-          <h1 class="text-6xl md:text-9xl">aidan buie</h1>
-          <ul class="text-right text-lg md:text-xl">
-            <li><h2 class="text-gruv-purple">phd student</h2></li>
-            <li><h2 class="text-gruv-blue">planetary scientist</h2></li>
-            <li><h2 class="text-gruv-aqua">artist</h2></li>
-            <li><h2 class="text-gruv-green">educator</h2></li>
-          </ul>
-        </div>
-      </div>
-    </main>
-    <Footer />
-  </body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+  <div id="hero" class="flex items-center justify-center font-bold">
+    <div>
+      <h1 class="text-6xl md:text-9xl">aidan buie</h1>
+      <ul class="text-right text-lg md:text-xl">
+        <li><h2 class="text-gruv-purple">phd student</h2></li>
+        <li><h2 class="text-gruv-blue">planetary scientist</h2></li>
+        <li><h2 class="text-gruv-aqua">artist</h2></li>
+        <li><h2 class="text-gruv-green">educator</h2></li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
