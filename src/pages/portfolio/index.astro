@@ -1,14 +1,28 @@
 ---
 import Page from "@/layouts/Page.astro";
 
+const routes = [
+  { route: "./cartography", title: "Cartography" },
+  { route: "./courses", title: "Courses" },
+  { route: "./photography", title: "Photography" },
+  { route: "./projects", title: "Projects" },
+];
+
 const pageTitle = "Portfolio | Aidan Buie";
 ---
 
-<Page pageTitle={pageTitle} bannerTitle="Portfolio">
-  <ul class="text-2xl">
-    <li><a href="./cartography/">Cartography</a></li>
-    <li><a href="./courses/">Courses</a></li>
-    <li><a href="./photography/">Photography</a></li>
-    <li><a href="./projects/">Projects</a></li>
-  </ul>
+<Page pageTitle={pageTitle}>
+  {
+    routes.map((r) => (
+      <span class="mb-10 flex h-4 grow items-center gap-x-2">
+        {/* NOTE: Identical to setup in PostsList, except different text-size*/}
+        {/* h-4 is set in both to ensure equal line heights */}
+        <hr class="text-accent grow" />
+        <h1 class="text-2xl font-bold md:text-4xl">
+          <a href={r.route}>{r.title}</a>
+        </h1>
+        <hr class="text-accent grow" />
+      </span>
+    ))
+  }
 </Page>
