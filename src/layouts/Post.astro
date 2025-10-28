@@ -17,65 +17,63 @@ const pageTitle = `${frontmatter.title} | Aidan Buie`;
 ---
 
 <Page pageTitle={pageTitle}>
-  <div class="flex justify-center">
-    <article class="prose prose-main md:prose-lg max-w-175">
-      <h1 class="text-balance">{frontmatter.title}</h1>
-      <div class="not-prose text-lg md:text-xl">
-        <span class="mb-1 flex flex-row justify-between">
-          <p class="hidden md:block">
-            {
-              frontmatter.pubDate.toLocaleDateString("default", {
+  <article class="prose prose-main md:prose-lg max-w-175">
+    <h1 class="text-balance">{frontmatter.title}</h1>
+    <div class="not-prose text-lg md:text-xl">
+      <span class="mb-1 flex flex-row justify-between">
+        <p class="hidden md:block">
+          {
+            frontmatter.pubDate.toLocaleDateString("default", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })
+          }
+        </p>
+        <p class="md:hidden">
+          {
+            frontmatter.pubDate.toLocaleDateString("default", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })
+          }
+        </p>
+        <p class="hidden md:block">
+          {
+            frontmatter.updateDate &&
+              `Updated ${frontmatter.pubDate.toLocaleDateString("default", {
                 day: "numeric",
                 month: "long",
                 year: "numeric",
-              })
-            }
-          </p>
-          <p class="md:hidden">
-            {
-              frontmatter.pubDate.toLocaleDateString("default", {
+              })}`
+          }
+        </p>
+        <p class="md:hidden">
+          {
+            frontmatter.updateDate &&
+              `Updated ${frontmatter.pubDate.toLocaleDateString("default", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
-              })
-            }
-          </p>
-          <p class="hidden md:block">
-            {
-              frontmatter.updateDate &&
-                `Updated ${frontmatter.pubDate.toLocaleDateString("default", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}`
-            }
-          </p>
-          <p class="md:hidden">
-            {
-              frontmatter.updateDate &&
-                `Updated ${frontmatter.pubDate.toLocaleDateString("default", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                })}`
-            }
-          </p>
-        </span>
-        <ul class="flex flex-row gap-x-2.5">
-          {
-            frontmatter.tags.sort().map((t) => (
-              <li>
-                <a href={`/tags/${t}`}>
-                  <i class="fa-solid fa-tag text-gruv-yellow text-sm" />
-                  {t}
-                </a>
-              </li>
-            ))
+              })}`
           }
-        </ul>
-      </div>
-      <p class="lead">{frontmatter.description}</p>
-      <slot />
-    </article>
-  </div>
+        </p>
+      </span>
+      <ul class="flex flex-row gap-x-2.5">
+        {
+          frontmatter.tags.sort().map((t) => (
+            <li>
+              <a href={`/tags/${t}`}>
+                <i class="fa-solid fa-tag text-gruv-yellow text-sm" />
+                {t}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <p class="lead">{frontmatter.description}</p>
+    <slot />
+  </article>
 </Page>
