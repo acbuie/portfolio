@@ -12,9 +12,11 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props;
+
+const pageTitle = `${frontmatter.title} | Aidan Buie`;
 ---
 
-<Page pageTitle={frontmatter.title}>
+<Page pageTitle={pageTitle}>
   <div class="flex justify-center">
     <article class="prose prose-main md:prose-lg max-w-175">
       <h1 class="text-balance">{frontmatter.title}</h1>
