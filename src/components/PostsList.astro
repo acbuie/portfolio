@@ -15,20 +15,52 @@ const { postsArray } = Astro.props;
   {
     postsArray.map((d) => (
       <>
-        <h2 class="mt-10 mb-5 text-4xl font-bold first:my-5">{d.year}</h2>
-        <ol class="grid grid-cols-[auto_8rem] gap-y-3 text-xl">
+        {/* Year */}
+        <span class="mb-10 flex grow items-center gap-x-2">
+          <hr class="text-accent grow" />
+          <h1 class="text-4xl font-bold">{d.year}</h1>
+          <hr class="text-accent grow" />
+        </span>
+        <ol class="mb-10 flex flex-col gap-y-10">
           {d.posts.map((p) => (
-            <>
-              <li>
-                <a href={`/posts/${p.id}`}>{p.data.title}</a>
-              </li>
-              <span class="self-end text-right">
-                {p.data.pubDate.toLocaleDateString("default", {
-                  month: "short",
-                  day: "numeric",
-                })}
+            <li class="flex flex-col gap-y-2">
+              {/* Title */}
+              <a class="text-2xl" href={`/posts/${p.id}`}>
+                {p.data.title}
+              </a>
+              <span class="flex flex-wrap items-center gap-x-2 text-sm md:text-base">
+                {/* Date */}
+                <p class="hidden md:block">
+                  {p.data.pubDate.toLocaleDateString("default", {
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+                <p class="md:hidden">
+                  {p.data.pubDate.toLocaleDateString("default", {
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </p>
+
+                {/* Divider */}
+                <hr class="text-bg-accent h-0.5 grow" />
+
+                {/* Tags */}
+                <ul class="ml-auto flex flex-row gap-x-2">
+                  {p.data.tags.sort().map((t) => (
+                    <li>
+                      <a href={`/tags/${t}`}>
+                        <i class="fa-solid fa-tag text-gruv-yellow text-xs md:text-sm" />
+                        {t}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </span>
-            </>
+              {/* Description */}
+              <p class="text-secondary">{p.data.description}</p>
+            </li>
           ))}
         </ol>
       </>
