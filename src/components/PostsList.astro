@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import Banner from "./Banner.astro";
 
 interface Props {
   postsArray: {
@@ -16,11 +17,10 @@ const { postsArray } = Astro.props;
     postsArray.map((d) => (
       <>
         {/* Year */}
-        <span class="mb-10 flex h-4 grow items-center gap-x-2">
-          <hr class="text-accent grow" />
+        <Banner>
           <h1 class="text-4xl font-bold">{d.year}</h1>
-          <hr class="text-accent grow" />
-        </span>
+        </Banner>
+
         <ol class="mb-10 flex flex-col gap-y-10">
           {d.posts.map((p) => (
             <li class="flex flex-col gap-y-2">
