@@ -1,5 +1,4 @@
 ---
-import BannerTitle from "@/components/Header/BannerTitle.astro";
 import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
@@ -7,12 +6,11 @@ interface Props {
   bannerTitle?: string;
 }
 
-const { pageTitle, bannerTitle } = Astro.props;
+const { pageTitle } = Astro.props;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <div class="flex-none">
-    {bannerTitle && <BannerTitle bannerTitle={bannerTitle} />}
     <slot />
   </div>
 </BaseLayout>

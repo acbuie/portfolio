@@ -11,7 +11,14 @@ const tags = getTags(rawPosts);
 const pageTitle = "Tag Archive | Aidan Buie";
 ---
 
-<Page pageTitle={pageTitle} bannerTitle="Tag Archive">
+<Page pageTitle={pageTitle}>
+  <span class="mb-10 flex h-4 grow items-center gap-x-2">
+    <hr class="text-accent grow" />
+    <h1 class="flex items-center gap-x-1 text-2xl font-bold">
+      <i class="fa-solid fa-tags text-gruv-yellow text-base"></i>Tag Archive
+    </h1>
+    <hr class="text-accent grow" />
+  </span>
   <ul class="text-xl">
     {
       tags.sort().map((tag) => (
