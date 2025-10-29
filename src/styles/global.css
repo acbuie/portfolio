@@ -47,7 +47,7 @@
     font-family: Alice;
   }
   a {
-    @apply hover:underline;
+    @apply decoration-gruv-aqua decoration-2 hover:underline;
   }
 }
 
