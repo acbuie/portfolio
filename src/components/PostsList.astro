@@ -28,7 +28,7 @@ const { postsArray } = Astro.props;
               <a class="w-fit text-2xl" href={`/posts/${p.id}`}>
                 {p.data.title}
               </a>
-              <span class="flex flex-wrap items-center gap-x-2 text-sm md:text-base">
+              <span class="text-secondary flex flex-wrap items-center gap-x-2 text-sm md:text-base">
                 {/* Date */}
                 <p class="hidden md:block">
                   {p.data.pubDate.toLocaleDateString("default", {
