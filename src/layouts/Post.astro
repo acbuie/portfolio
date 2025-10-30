@@ -50,10 +50,7 @@ const pageTitle = `${frontmatter.title} | Aidan Buie`;
         {
           frontmatter.tags.sort().map((t) => (
             <li>
-              <a href={`/tags/${t}`}>
-                <i class="fa-solid fa-tag text-gruv-yellow text-xs md:text-base" />
-                {t}
-              </a>
+              <a href={`/tags/${t}`}>{`#${t}`}</a>
             </li>
           ))
         }

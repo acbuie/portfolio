@@ -50,10 +50,7 @@ const { postsArray } = Astro.props;
                 <ul class="ml-auto flex flex-row gap-x-2">
                   {p.data.tags.sort().map((t) => (
                     <li>
-                      <a href={`/tags/${t}`}>
-                        <i class="fa-solid fa-tag text-gruv-yellow text-xs md:text-sm" />
-                        {t}
-                      </a>
+                      <a href={`/tags/${t}`}>{`#${t}`}</a>
                     </li>
                   ))}
                 </ul>

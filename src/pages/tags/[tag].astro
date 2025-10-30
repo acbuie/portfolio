@@ -36,7 +36,7 @@ const pageTitle = `${capitalize(tag)} | Aidan Buie`;
 <Page pageTitle={pageTitle}>
   <Banner>
     <h1 class="flex items-center gap-x-1 text-2xl font-bold">
-      <i class="fa-solid fa-tag text-gruv-yellow text-base"></i>{tag}
+      {`#${tag}`}
     </h1>
   </Banner>
   <PostsList postsArray={postsArray} />

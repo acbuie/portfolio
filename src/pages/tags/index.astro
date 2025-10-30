@@ -14,18 +14,13 @@ const pageTitle = "Tag Archive | Aidan Buie";
 
 <Page pageTitle={pageTitle}>
   <Banner>
-    <h1 class="flex items-center gap-x-1 text-2xl font-bold">
-      <i class="fa-solid fa-tags text-gruv-yellow text-base"></i>Tag Archive
-    </h1>
+    <h1 class="flex items-center gap-x-1 text-2xl font-bold">#Tag Archive</h1>
   </Banner>
   <ul class="text-xl">
     {
       tags.sort().map((tag) => (
         <li class="my-2">
-          <a href={`/tags/${tag}`}>
-            <i class="fa-solid fa-tag text-gruv-yellow text-sm" />
-            {tag}
-          </a>
+          <a href={`/tags/${tag}`}>{`#${tag}`}</a>
         </li>
       ))
     }
