@@ -1,0 +1,25 @@
+---
+import Banner from "@/components/Banner.astro";
+import Page from "@/layouts/Page.astro";
+
+const routes = [
+  { route: "./cartography", title: "Cartography" },
+  { route: "./courses", title: "Courses" },
+  { route: "./photography", title: "Photography" },
+  { route: "./projects", title: "Projects" },
+];
+
+const pageTitle = "Portfolio | Aidan Buie";
+---
+
+<Page pageTitle={pageTitle}>
+  {
+    routes.map((r) => (
+      <Banner>
+        <h1 class="text-2xl font-bold md:text-4xl">
+          <a href={r.route}>{r.title}</a>
+        </h1>
+      </Banner>
+    ))
+  }
+</Page>

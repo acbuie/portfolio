@@ -1,60 +1,19 @@
 ---
 import { getCollection } from "astro:content";
 
+import { arrangePostCollection } from "@/utils/posts";
+
+import PostsList from "@/components/PostsList.astro";
+import TagArchive from "@/components/TagArchive.astro";
 import Page from "@/layouts/Page.astro";
-import type { CollectionEntry } from "astro:content";
 
 const rawPosts = await getCollection("blogPosts");
+const postsArray = arrangePostCollection(rawPosts);
 
-// Group posts by year
-const posts = rawPosts.reduce(
-  (groups: { [key: string]: CollectionEntry<"blogPosts">[] }, post) => {
-    const year = post.data.pubDate.getFullYear();
-    if (!groups[year]) {
-      groups[year] = [];
-    }
-    groups[year].push(post);
-    return groups;
-  },
-  {},
-);
-
-// Convert to array of objs, sorting by date
-const postsArray = Object.keys(posts)
-  .map((year) => {
-    return {
-      year,
-      posts: posts[year].sort(
-        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-      ),
-    };
-  })
-  .sort((a, b) => parseInt(b.year) - parseInt(a.year));
+const pageTitle = "Musings | Aidan Buie";
 ---
 
-<Page pageTitle="Blog | acbuie" bannerTitle="Musings">
-  <ul>
-    {
-      postsArray.map((d) => (
-        <>
-          <h2 class="text-4xl my-5">{d.year}</h2>
-          <ul class="text-xl grid grid-cols-[auto_8rem] gap-y-3">
-            {d.posts.map((p) => (
-              <>
-                <li>
-                  <a href={`/posts/${p.id}`}>{p.data.title}</a>
-                </li>
-                <span class="text-right self-end">
-                  {p.data.pubDate.toLocaleDateString("default", {
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </span>
-              </>
-            ))}
-          </ul>
-        </>
-      ))
-    }
-  </ul>
+<Page pageTitle={pageTitle}>
+  <PostsList postsArray={postsArray} />
+  <TagArchive />
 </Page>

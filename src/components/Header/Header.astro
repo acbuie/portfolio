@@ -3,15 +3,19 @@ import DesktopNavigation from "./Nav/DesktopNav.astro";
 ---
 
 <header
-  class="top-0 flex flex-col text-lg md:text-2xl font-bold px-5 md:px-10 lg:px-25 xl:px-50"
+  class="top-0 z-1 flex flex-col px-5 text-lg font-bold md:px-10 md:text-2xl lg:px-25 xl:px-50"
 >
-  <nav class="h-22 flex items-center justify-between">
+  <nav class="flex h-22 items-center justify-between">
     <div class="relative flex justify-center p-1.5">
       <span
-        class="absolute -inset-1 block -skew-y-3 -skew-x-3 bg-gruv-aqua"
-        aria-hidden="true"></span>
-      <a href="/" class="relative text-bg hidden md:block">aidan buie</a>
-      <a href="/" class="relative text-bg md:hidden">ab</a>
+        class="bg-gruv-aqua absolute -inset-1 block -skew-x-3 -skew-y-3"
+        aria-hidden="true"
+      >
+      </span>
+      <a href="/" class="text-bg decoration-bg relative hidden md:block">
+        aidan buie
+      </a>
+      <a href="/" class="text-bg relative md:hidden">ab</a>
     </div>
     <DesktopNavigation />
   </nav>
