@@ -25,7 +25,7 @@ const { postsArray } = Astro.props;
           {d.posts.map((p) => (
             <li class="flex flex-col gap-y-2">
               {/* Title */}
-              <a class="text-2xl" href={`/posts/${p.id}`}>
+              <a class="w-fit text-2xl" href={`/posts/${p.id}`}>
                 {p.data.title}
               </a>
               <span class="flex flex-wrap items-center gap-x-2 text-sm md:text-base">
