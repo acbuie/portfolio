@@ -7,7 +7,7 @@ const basePath = Astro.url.pathname.split("/").filter((c) => c)[0];
 <ul id="nav-links" class="flex gap-x-4 md:gap-x-10">
   <li>
     <a
-      class="text-gruv-yellow aria-[current=page]:underline"
+      class="aria-[current=page]:underline"
       href="/blog/"
       aria-current={basePath === "blog" || basePath === "posts"
         ? "page"
@@ -18,7 +18,7 @@ const basePath = Astro.url.pathname.split("/").filter((c) => c)[0];
   </li>
   <li>
     <a
-      class="text-gruv-red aria-[current=page]:underline"
+      class="aria-[current=page]:underline"
       href="/portfolio/"
       aria-current={basePath === "portfolio" ? "page" : "false"}
     >
@@ -27,7 +27,7 @@ const basePath = Astro.url.pathname.split("/").filter((c) => c)[0];
   </li>
   <li>
     <a
-      class="text-gruv-orange aria-[current=page]:underline"
+      class="aria-[current=page]:underline"
       href="/about/"
       aria-current={basePath === "about" ? "page" : "false"}
     >
