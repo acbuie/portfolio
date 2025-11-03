@@ -1,7 +1,8 @@
 ---
 import { getCollection, render } from "astro:content";
 
-import Post from "@/layouts/Post.astro";
+import PostMeta from "@/components/Posts/PostMeta.astro";
+import Page from "@/layouts/Page.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blogPosts");
@@ -13,8 +14,16 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const pageTitle = ` ${post.data.title} | Aidan Buie`;
 ---
 
-<Post frontmatter={post.data}>
-  <Content />
-</Post>
+<Page pageTitle={pageTitle}>
+  <article class="max-w-175">
+    <h1 class="mb-5 text-4xl text-balance md:text-6xl">{post.data.title}</h1>
+
+    <PostMeta frontmatter={post.data} />
+
+    <Content />
+  </article>
+</Page>
