@@ -19,8 +19,9 @@ const { pageTitle } = Astro.props;
     class="text-primary bg-bg selection:bg-gruv-aqua selection:text-primary flex min-h-screen w-screen flex-col overflow-x-hidden antialiased"
   >
     <Header />
-    <main class="mb-40 flex grow justify-center px-5">
-      <div class="w-175 has-[div#hero]:flex">
+    <main class="mb-40 flex grow justify-center">
+      <!--NOTE: Equivalent to px-5 but actually caps the ExpressiveCode component -->
+      <div class="w-[calc(100vw-2.5rem)] has-[div#hero]:flex md:w-175">
         <slot />
       </div>
     </main>
