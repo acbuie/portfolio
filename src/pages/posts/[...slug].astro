@@ -18,10 +18,22 @@ const { Content } = await render(post);
 const pageTitle = ` ${post.data.title} | Aidan Buie`;
 ---
 
+<style is:global>
+  @reference "@/styles/global.css";
+
+  #post {
+    p {
+      @apply my-5;
+    }
+  }
+</style>
+
 <Page pageTitle={pageTitle}>
   <article>
     <PostMeta frontmatter={post.data} />
 
-    <Content />
+    <div id="post">
+      <Content />
+    </div>
   </article>
 </Page>

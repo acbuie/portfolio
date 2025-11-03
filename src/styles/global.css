@@ -2,8 +2,6 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
 @plugin "tailwindcss-animate";
-@plugin "@tailwindcss/typography";
-@config "./tailwind.config.cjs";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
