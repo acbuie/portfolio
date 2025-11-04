@@ -21,18 +21,18 @@ const variantProps = (() => {
 
 <div
   class:list={[
-    "aside text-gruv-black my-5 border-l-8 px-4 py-2",
+    "aside bg-bg-code my-5 rounded-r border-l-8 px-4 py-2",
     {
-      "border-gruv-green bg-gruv-green-b": variant === "tip",
+      "border-gruv-green": variant === "tip",
     },
     {
-      "border-gruv-yellow bg-gruv-yellow-b": variant === "caution",
+      "border-gruv-yellow": variant === "caution",
     },
     {
-      "border-gruv-red bg-gruv-red-b": variant === "danger",
+      "border-gruv-red": variant === "danger",
     },
     {
-      "border-gruv-blue bg-gruv-blue-b": variant === "info",
+      "border-gruv-blue": variant === "info",
     },
   ]}
 >
@@ -40,7 +40,9 @@ const variantProps = (() => {
     <i
       class=`fa-solid ${variantProps.icon} ${variantProps.color} size-5`
       aria-hidden="true"></i>
-    <p class="text-base font-bold">{variant.toUpperCase()}</p>
+    <p class=`${variantProps.color} text-base font-bold`>
+      {variant.toUpperCase()}
+    </p>
   </span>
   <slot />
 </div>

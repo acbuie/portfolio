@@ -21,6 +21,7 @@ export default defineConfig({
       themes: ["gruvbox-dark-soft", "gruvbox-light-soft"],
       styleOverrides: {
         borderWidth: "0px",
+        borderRadius: "0.25rem",
       },
     }),
     mdx(),

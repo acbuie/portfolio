@@ -36,6 +36,8 @@
 
   --color-bg: #f9f5d7;
   --color-bg-accent: #ebdbb2;
+
+  --color-bg-code: #f2e5bc;
 }
 
 @layer theme {
@@ -46,6 +48,7 @@
 
     --color-bg: #1d2021;
     --color-bg-accent: #3c3836;
+    --color-bg-code: #32302f;
   }
 }
 
