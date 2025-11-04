@@ -1,0 +1,46 @@
+---
+interface Props {
+  variant: "tip" | "caution" | "danger" | "info";
+}
+
+const { variant } = Astro.props as Props;
+
+const variantProps = (() => {
+  switch (variant) {
+    case "tip":
+      return { icon: "fa-lightbulb", color: "text-gruv-green" };
+    case "caution":
+      return { icon: "fa-triangle-exclamation", color: "text-gruv-yellow" };
+    case "danger":
+      return { icon: "fa-fire", color: "text-gruv-red" };
+    case "info":
+      return { icon: "fa-circle-info", color: "text-gruv-blue" };
+  }
+})();
+---
+
+<div
+  class:list={[
+    "aside text-gruv-black my-5 border-l-8 px-4 py-2",
+    {
+      "border-gruv-green bg-gruv-green-b": variant === "tip",
+    },
+    {
+      "border-gruv-yellow bg-gruv-yellow-b": variant === "caution",
+    },
+    {
+      "border-gruv-red bg-gruv-red-b": variant === "danger",
+    },
+    {
+      "border-gruv-blue bg-gruv-blue-b": variant === "info",
+    },
+  ]}
+>
+  <span class="flex items-center gap-2 pb-2">
+    <i
+      class=`fa-solid ${variantProps.icon} ${variantProps.color} size-5`
+      aria-hidden="true"></i>
+    <p class="text-base font-bold">{variant.toUpperCase()}</p>
+  </span>
+  <slot />
+</div>

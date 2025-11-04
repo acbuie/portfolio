@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 
+import Aside from "@/components/Posts/Aside.astro";
 import PostMeta from "@/components/Posts/PostMeta.astro";
 import Page from "@/layouts/Page.astro";
 
@@ -28,13 +29,16 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
     p {
       @apply my-5;
     }
+    .aside p {
+      @apply m-0;
+    }
 
     a {
       @apply underline;
     }
 
     blockquote {
-      @apply border-l-gruv-aqua my-5 border-l-4 ps-4 italic;
+      @apply border-l-gruv-aqua my-5 border-l-8 ps-4 italic;
     }
 
     /* Headings */
@@ -157,7 +161,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
     <PostMeta frontmatter={post.data} />
 
     <div class="post">
-      <Content />
+      <Content components={{ Aside: Aside }} />
     </div>
   </article>
 </Page>
