@@ -54,31 +54,26 @@ const { frontmatter } = Astro.props;
 </span>
 
 {/* Updated Date */}
-<div
-  class="text-secondary mt-3 flex flex-row justify-between text-sm md:text-lg"
->
-  <p class="hidden md:block">
-    {
-      frontmatter.updateDate &&
-        `Updated ${frontmatter.pubDate.toLocaleDateString("default", {
+{
+  frontmatter.updateDate && (
+    <div class="text-secondary mt-3 flex flex-row justify-between text-sm md:text-lg">
+      <p class="hidden md:block">
+        {`Updated ${frontmatter.pubDate.toLocaleDateString("default", {
           day: "numeric",
           month: "long",
           year: "numeric",
-        })}`
-    }
-  </p>
-  <p class="md:hidden">
-    {
-      frontmatter.updateDate &&
-        `Updated ${frontmatter.pubDate.toLocaleDateString("default", {
+        })}`}
+      </p>
+      <p class="md:hidden">
+        {`Updated ${frontmatter.pubDate.toLocaleDateString("default", {
           day: "numeric",
           month: "short",
           year: "numeric",
-        })}`
-    }
-  </p>
-</div>
-
+        })}`}
+      </p>
+    </div>
+  )
+}
 {/* Description */}
 <p class="text-secondary my-5 text-lg md:mb-[1.3em] md:text-xl">
   {frontmatter.description}
