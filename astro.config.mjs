@@ -19,6 +19,9 @@ export default defineConfig({
   integrations: [
     expressiveCode({
       themes: ["gruvbox-dark-soft", "gruvbox-light-soft"],
+      styleOverrides: {
+        borderWidth: "0px",
+      },
     }),
     mdx(),
   ],
