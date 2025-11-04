@@ -21,9 +21,133 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
 <style is:global>
   @reference "@/styles/global.css";
 
-  #post {
+  .post {
+    @apply text-accent text-lg;
+
+    /* Singles elements */
     p {
       @apply my-5;
+    }
+
+    a {
+      @apply underline;
+    }
+
+    blockquote {
+      @apply border-l-gruv-aqua my-5 border-l-4 ps-4 italic;
+    }
+
+    /* Headings */
+    :is(h2, h3, h4) {
+      @apply text-primary font-bold;
+    }
+    h2 {
+      @apply mt-8 mb-4 text-3xl;
+    }
+    h3 {
+      @apply mt-7 mb-3 text-2xl;
+    }
+    h4 {
+      @apply mt-6 mb-2 text-xl;
+    }
+    h2 + * {
+      @apply mt-0;
+    }
+    h3 + * {
+      @apply mt-0;
+    }
+    h4 + * {
+      @apply mt-0;
+    }
+
+    hr {
+      @apply text-bg-accent my-16;
+    }
+    hr + * {
+      @apply mt-0;
+    }
+
+    /* Lists */
+    ol,
+    ul {
+      @apply marker:text-gruv-aqua my-5 list-outside ps-6 marker:text-xl;
+    }
+    ol {
+      @apply list-decimal;
+    }
+    ul {
+      @apply list-disc;
+    }
+    ol > li,
+    ul > li {
+      @apply ps-2;
+    }
+    > ol > li p,
+    > ul > li p {
+      @apply my-3;
+    }
+    > ol > li > p:first-child,
+    > ul > li > p:first-child {
+      @apply mt-5;
+    }
+    > ol > li > p:last-child,
+    > ul > li > p:last-child {
+      @apply mb-5;
+    }
+    ol ol,
+    ol ul,
+    ul ol,
+    ul ul {
+      @apply my-5;
+    }
+    dl {
+      @apply my-5;
+    }
+    dt {
+      @apply mt-5 font-bold;
+    }
+    dd {
+      @apply mt-2 ps-6;
+    }
+
+    /* Tables */
+    table {
+      @apply my-8 w-full table-auto border-collapse;
+    }
+    thead {
+      @apply border-b-gruv-aqua border-b-2;
+    }
+    thead th {
+      @apply text-primary pb-3 text-left align-bottom font-bold;
+    }
+    tbody tr {
+      @apply border-b-bg-accent border-b-1;
+    }
+    tbody tr:last-child {
+      @apply border-0;
+    }
+    tbody td,
+    tfoot td {
+      @apply py-2;
+    }
+    tfoot {
+      @apply border-t-1;
+    }
+
+    /* Figures */
+    figure {
+      @apply my-8;
+    }
+    figure > * {
+      @apply my-0;
+    }
+    figcaption {
+      @apply mt-4 text-base;
+    }
+
+    /* Code */
+    :not(pre) > code {
+      @apply bg-bg-accent rounded px-1 text-[.85em];
     }
   }
 </style>
@@ -32,7 +156,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
   <article>
     <PostMeta frontmatter={post.data} />
 
-    <div id="post">
+    <div class="post">
       <Content />
     </div>
   </article>
