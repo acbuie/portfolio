@@ -26,11 +26,8 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
     @apply text-accent text-lg;
 
     /* Singles elements */
-    p {
+    p:not(div.aside *, blockquote *) {
       @apply my-5;
-    }
-    .aside p {
-      @apply m-0;
     }
 
     a {

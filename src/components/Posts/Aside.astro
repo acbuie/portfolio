@@ -36,13 +36,15 @@ const variantProps = (() => {
     },
   ]}
 >
-  <span class="flex items-center gap-2 pb-2">
+  <span class="flex h-8 items-center gap-2">
     <i
       class=`fa-solid ${variantProps.icon} ${variantProps.color} size-5`
       aria-hidden="true"></i>
-    <p class=`${variantProps.color} text-base font-bold`>
+    <span class=`${variantProps.color} text-base font-bold`>
       {variant.toUpperCase()}
-    </p>
+    </span>
   </span>
-  <slot />
+  <div class="[&>p]:not-first:my-3">
+    <slot />
+  </div>
 </div>
