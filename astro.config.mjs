@@ -20,8 +20,8 @@ export default defineConfig({
     expressiveCode({
       themes: ["gruvbox-dark-soft", "gruvbox-light-soft"],
       styleOverrides: {
-        borderWidth: "0px",
         borderRadius: "0.75rem",
+        borderColor: ({ theme }) => theme.colors["editor.background"],
       },
     }),
     mdx(),
