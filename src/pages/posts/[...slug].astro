@@ -73,40 +73,40 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
     }
 
     /* Lists */
-    :not(.step) {
-      ol,
-      ul {
-        @apply marker:text-gruv-aqua my-5 list-outside ps-6 marker:text-xl;
-      }
-      ol {
-        @apply list-decimal;
-      }
-      ul {
-        @apply list-disc;
-      }
-      ol > li,
-      ul > li {
-        @apply ps-2;
-      }
-      > ol > li p,
-      > ul > li p {
-        @apply my-3;
-      }
-      > ol > li > p:first-child,
-      > ul > li > p:first-child {
-        @apply mt-5;
-      }
-      > ol > li > p:last-child,
-      > ul > li > p:last-child {
-        @apply mb-5;
-      }
-      ol ol,
-      ol ul,
-      ul ol,
-      ul ul {
-        @apply my-5;
-      }
+    ol:not(.step),
+    ul {
+      @apply marker:text-gruv-aqua my-5 list-outside ps-6 marker:text-xl;
     }
+
+    ol:not(.step) {
+      @apply list-decimal;
+    }
+    ul {
+      @apply list-disc;
+    }
+    ol:not(.step) > li,
+    ul > li {
+      @apply ps-2;
+    }
+    > ol:not(.step) > li p,
+    > ul > li p {
+      @apply my-3;
+    }
+    > ol:not(.step) > li > p:first-child,
+    > ul > li > p:first-child {
+      @apply mt-5;
+    }
+    > ol:not(.step) > li > p:last-child,
+    > ul > li > p:last-child {
+      @apply mb-5;
+    }
+    ol:not(.step) ol:not(.step),
+    ol:not(.step) ul,
+    ul ol:not(.step),
+    ul ul {
+      @apply my-5;
+    }
+
     dl {
       @apply my-5;
     }
