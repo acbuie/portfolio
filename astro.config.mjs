@@ -22,6 +22,10 @@ export default defineConfig({
     expressiveCode({
       themes: ["gruvbox-dark-soft", "gruvbox-light-soft"],
       styleOverrides: {
+        frames: {
+          terminalTitlebarBorderBottomColor: ({ theme }) =>
+            theme.colors["editorGroupHeader.tabsBorder"],
+        },
         borderRadius: "0.75rem",
         borderColor: ({ theme }) => theme.colors["editor.background"],
       },
