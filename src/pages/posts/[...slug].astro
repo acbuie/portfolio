@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 
 import Aside from "@/components/Posts/Aside.astro";
 import PostMeta from "@/components/Posts/PostMeta.astro";
+import Step from "@/components/Posts/Step.astro";
 import Page from "@/layouts/Page.astro";
 
 export async function getStaticPaths() {
@@ -26,7 +27,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
     @apply text-accent text-lg;
 
     /* Single elements */
-    p:not(div.aside *, blockquote *) {
+    p:not(div.aside *, blockquote *, ol.step *) {
       @apply my-5;
     }
 
@@ -72,37 +73,39 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
     }
 
     /* Lists */
-    ol,
-    ul {
-      @apply marker:text-gruv-aqua my-5 list-outside ps-6 marker:text-xl;
-    }
-    ol {
-      @apply list-decimal;
-    }
-    ul {
-      @apply list-disc;
-    }
-    ol > li,
-    ul > li {
-      @apply ps-2;
-    }
-    > ol > li p,
-    > ul > li p {
-      @apply my-3;
-    }
-    > ol > li > p:first-child,
-    > ul > li > p:first-child {
-      @apply mt-5;
-    }
-    > ol > li > p:last-child,
-    > ul > li > p:last-child {
-      @apply mb-5;
-    }
-    ol ol,
-    ol ul,
-    ul ol,
-    ul ul {
-      @apply my-5;
+    :not(.step) {
+      ol,
+      ul {
+        @apply marker:text-gruv-aqua my-5 list-outside ps-6 marker:text-xl;
+      }
+      ol {
+        @apply list-decimal;
+      }
+      ul {
+        @apply list-disc;
+      }
+      ol > li,
+      ul > li {
+        @apply ps-2;
+      }
+      > ol > li p,
+      > ul > li p {
+        @apply my-3;
+      }
+      > ol > li > p:first-child,
+      > ul > li > p:first-child {
+        @apply mt-5;
+      }
+      > ol > li > p:last-child,
+      > ul > li > p:last-child {
+        @apply mb-5;
+      }
+      ol ol,
+      ol ul,
+      ul ol,
+      ul ul {
+        @apply my-5;
+      }
     }
     dl {
       @apply my-5;
@@ -157,6 +160,13 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
     div.expressive-code:not(div.aside *) {
       @apply my-5;
     }
+
+    /* Aside */
+    /* No bottom margin on last child Aside or EC within Step */
+    & > ol.step div.aside:last-child,
+    & > ol.step div.expressive-code:last-child {
+      @apply mb-0;
+    }
   }
 </style>
 
@@ -165,7 +175,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
     <PostMeta frontmatter={post.data} />
 
     <div class="post">
-      <Content components={{ Aside: Aside }} />
+      <Content components={{ Aside: Aside, Step: Step }} />
     </div>
   </article>
 </Page>
