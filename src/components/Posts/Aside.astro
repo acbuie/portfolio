@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 interface Props {
   variant: "tip" | "caution" | "danger" | "info";
 }
@@ -8,13 +10,13 @@ const { variant } = Astro.props as Props;
 const variantProps = (() => {
   switch (variant) {
     case "tip":
-      return { icon: "fa-lightbulb", color: "text-gruv-green" };
+      return { color: "text-gruv-green" };
     case "caution":
-      return { icon: "fa-triangle-exclamation", color: "text-gruv-yellow" };
+      return { color: "text-gruv-yellow" };
     case "danger":
-      return { icon: "fa-fire", color: "text-gruv-red" };
+      return { color: "text-gruv-red" };
     case "info":
-      return { icon: "fa-circle-info", color: "text-gruv-blue" };
+      return { color: "text-gruv-blue" };
   }
 })();
 ---
@@ -37,9 +39,7 @@ const variantProps = (() => {
   ]}
 >
   <span class="flex h-8 items-center gap-2">
-    <i
-      class=`fa-solid ${variantProps.icon} ${variantProps.color} size-5`
-      aria-hidden="true"></i>
+    <Icon name={`aside/${variant}`} class=`size-6 ${variantProps.color}` />
     <span class=`${variantProps.color} text-base font-bold`>
       {variant.toUpperCase()}
     </span>

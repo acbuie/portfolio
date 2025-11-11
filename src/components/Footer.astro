@@ -1,13 +1,19 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
 <footer class="absolute bottom-0 z-1 mb-5 flex h-20 w-screen justify-center">
   <div class="flex flex-col gap-y-2.5 text-center">
-    <ul class="flex flex-row gap-x-10 text-sm md:text-base">
+    <ul class="flex flex-row items-center gap-x-10 text-sm md:text-base">
       <li>
         <a
           href="https://github.com/acbuie"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="fa-brands fa-github pr-4 md:pr-6"></i>GitHub
+          <div class="flex items-center gap-x-1">
+            <Icon name="logo/github" class="size-5" />GitHub
+          </div>
         </a>
       </li>
       <li>
@@ -16,12 +22,16 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="fa-brands fa-linkedin pr-4 md:pr-6"></i>LinkedIn
+          <div class="flex items-center gap-x-1">
+            <Icon name="logo/linkedin" class="size-5" />LinkedIn
+          </div>
         </a>
       </li>
       <li>
         <a>
-          <i class="fa-solid fa-graduation-cap pr-4 md:pr-6"></i>CV
+          <div class="flex items-center gap-x-1">
+            <Icon name="logo/cv" class="size-5" />CV
+          </div>
         </a>
       </li>
     </ul>
