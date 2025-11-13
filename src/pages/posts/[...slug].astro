@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 
 import Aside from "@/components/Posts/Aside.astro";
+import FileTree from "@/components/Posts/FileTree.astro";
 import PostMeta from "@/components/Posts/PostMeta.astro";
 import Step from "@/components/Posts/Step.astro";
 import Page from "@/layouts/Page.astro";
@@ -74,36 +75,36 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
 
     /* Lists */
     ol:not(.step),
-    ul {
+    ul:not(starlight-file-tree *) {
       @apply marker:text-gruv-aqua my-5 list-outside ps-6 marker:text-xl;
     }
 
     ol:not(.step) {
       @apply list-decimal;
     }
-    ul {
+    ul:not(starlight-file-tree *) {
       @apply list-disc;
     }
     ol:not(.step) > li,
-    ul > li {
+    ul:not(starlight-file-tree *) > li {
       @apply ps-2;
     }
     > ol:not(.step) > li p,
-    > ul > li p {
+    > ul:not(starlight-file-tree *) > li p {
       @apply my-3;
     }
     > ol:not(.step) > li > p:first-child,
-    > ul > li > p:first-child {
+    > ul:not(starlight-file-tree *) > li > p:first-child {
       @apply mt-5;
     }
     > ol:not(.step) > li > p:last-child,
-    > ul > li > p:last-child {
+    > ul:not(starlight-file-tree *) > li > p:last-child {
       @apply mb-5;
     }
     ol:not(.step) ol:not(.step),
-    ol:not(.step) ul,
-    ul ol:not(.step),
-    ul ul {
+    ol:not(.step) ul:not(starlight-file-tree *),
+    ul:not(starlight-file-tree *) ol:not(.step),
+    ul:not(starlight-file-tree *) ul:not(starlight-file-tree *) {
       @apply my-5;
     }
 
@@ -175,7 +176,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
     <PostMeta frontmatter={post.data} />
 
     <div class="post">
-      <Content components={{ Aside: Aside, Step: Step }} />
+      <Content components={{ Aside: Aside, FileTree: FileTree, Step: Step }} />
     </div>
   </article>
 </Page>
