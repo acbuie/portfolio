@@ -1,0 +1,21 @@
+---
+interface Props {
+  count: number;
+}
+
+const { count } = Astro.props;
+---
+
+<li
+  class="mt-2 grid list-none grid-flow-col grid-cols-[max-content_1fr] grid-rows-[max-content_1fr] gap-x-2 gap-y-2"
+>
+  <span
+    class="bg-bg-accent text-primary flex aspect-square size-7 justify-center rounded-full align-middle"
+  >
+    {count}
+  </span>
+  <div class="flex w-7 justify-center">
+    <span class="bg-bg-accent min-h-2 w-[2px]"></span>
+  </div>
+  <div class="row-span-2 mb-5 *:mb-5 *:last:mb-0"><slot /></div>
+</li>
