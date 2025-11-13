@@ -1,0 +1,80 @@
+---
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    updateDate?: Date;
+    tags: string[];
+  };
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<h1 class="mb-5 text-4xl text-balance md:text-6xl">{frontmatter.title}</h1>
+
+<span
+  class="text-secondary flex flex-wrap items-center gap-x-2 text-sm md:text-lg"
+>
+  {/* Pub Date */}
+  <div>
+    <p class="hidden md:block">
+      {
+        frontmatter.pubDate.toLocaleDateString("default", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
+      }
+    </p>
+    <p class="md:hidden">
+      {
+        frontmatter.pubDate.toLocaleDateString("default", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        })
+      }
+    </p>
+  </div>
+
+  <hr class="text-bg-accent h-0.5 grow" />
+
+  {/* Tags */}
+  <ul class="ml-auto flex flex-row gap-x-2.5">
+    {
+      frontmatter.tags.sort().map((t) => (
+        <li>
+          <a href={`/tags/${t}`}>{`#${t}`}</a>
+        </li>
+      ))
+    }
+  </ul>
+</span>
+
+{/* Updated Date */}
+{
+  frontmatter.updateDate && (
+    <div class="text-secondary mt-3 flex flex-row justify-between text-sm md:text-lg">
+      <p class="hidden md:block">
+        {`Updated ${frontmatter.pubDate.toLocaleDateString("default", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}`}
+      </p>
+      <p class="md:hidden">
+        {`Updated ${frontmatter.pubDate.toLocaleDateString("default", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        })}`}
+      </p>
+    </div>
+  )
+}
+{/* Description */}
+<p class="my-5 text-xl md:text-xl">
+  {frontmatter.description}
+</p>

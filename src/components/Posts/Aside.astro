@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  variant: "tip" | "caution" | "danger" | "info";
+}
+
+const { variant } = Astro.props as Props;
+
+const variantProps = (() => {
+  switch (variant) {
+    case "tip":
+      return { color: "text-gruv-green" };
+    case "caution":
+      return { color: "text-gruv-yellow" };
+    case "danger":
+      return { color: "text-gruv-red" };
+    case "info":
+      return { color: "text-gruv-blue" };
+  }
+})();
+---
+
+<div
+  class:list={[
+    "aside bg-bg-accent my-5 rounded-r-xl border-l-8 p-4",
+    {
+      "border-gruv-green": variant === "tip",
+    },
+    {
+      "border-gruv-yellow": variant === "caution",
+    },
+    {
+      "border-gruv-red": variant === "danger",
+    },
+    {
+      "border-gruv-blue": variant === "info",
+    },
+  ]}
+>
+  <span class="flex h-8 items-center gap-2">
+    <Icon name={`aside/${variant}`} class=`size-6 ${variantProps.color}` />
+    <span class=`${variantProps.color} text-base font-bold`>
+      {variant.toUpperCase()}
+    </span>
+  </span>
+  <div class="[&>p]:not-first:my-3">
+    <slot />
+  </div>
+</div>

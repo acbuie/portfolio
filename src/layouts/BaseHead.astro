@@ -18,10 +18,17 @@ const { pageTitle } = Astro.props;
 
 <!-- <ClientRouter fallback="none" /> -->
 
+<!-- TODO: Add code block colorscheme setter-->
 <script is:inline>
-  localStorage.theme === "dark" ||
-  (!("theme" in localStorage) &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ? document.documentElement.classList.add("dark")
-    : document.documentElement.classList.remove("dark");
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+    document.documentElement.dataset.theme = "gruvbox-dark-soft";
+  } else {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.dataset.theme = "gruvbox-light-soft";
+  }
 </script>

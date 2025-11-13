@@ -1,9 +1,6 @@
 @import "tailwindcss";
-@import "@fortawesome/fontawesome-free/css/all.min.css";
 
 @plugin "tailwindcss-animate";
-@plugin "@tailwindcss/typography";
-@config "./tailwind.config.cjs";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -19,6 +16,7 @@
   --color-secondary: #7c6f64;
   --color-accent: #3c3836;
 
+  --color-gruv-black: #282828;
   --color-gruv-red: #cc241d;
   --color-gruv-green: #98971a;
   --color-gruv-yellow: #d79921;
@@ -27,8 +25,18 @@
   --color-gruv-aqua: #689d6a;
   --color-gruv-orange: #d65d0e;
 
+  --color-gruv-red-b: #fb4934;
+  --color-gruv-green-b: #b8bb26;
+  --color-gruv-yellow-b: #fabd24;
+  --color-gruv-blue-b: #83a598;
+  --color-gruv-purple-b: #d3869b;
+  --color-gruv-aqua-b: #8ec07c;
+  --color-gruv-orange-b: #fe8019;
+
   --color-bg: #f9f5d7;
+  --color-bg-secondary: #a89984;
   --color-bg-accent: #ebdbb2;
+  --color-bg-code: #f2e5bc;
 }
 
 @layer theme {
@@ -38,7 +46,9 @@
     --color-accent: #ebdbb2;
 
     --color-bg: #1d2021;
+    --color-bg-secondary: #7c6f64;
     --color-bg-accent: #3c3836;
+    --color-bg-code: #32302f;
   }
 }
 
