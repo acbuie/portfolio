@@ -22,6 +22,8 @@ const html = processFileTree(fileTreeHtml, "Directory");
     font-family: var(--font-mono);
     overflow-x: auto;
     border-radius: 0.75rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
 
     & :global(.directory > details) {
       border: 0;
@@ -129,6 +131,15 @@ const html = processFileTree(fileTreeHtml, "Directory");
     & :global(.highlight svg.tree-icon) {
       fill: currentColor;
     }
+  }
+
+  /* NOTE: Ensure margin is correct in Step when starting or stopping a list */
+  :global(ol.step) starlight-file-tree:last-child {
+    margin-bottom: 0rem;
+  }
+
+  :global(ol.step) starlight-file-tree:first-child {
+    margin-top: 0rem;
   }
 
   @media (min-width: 30em) {
