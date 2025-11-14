@@ -133,7 +133,12 @@ const html = processFileTree(fileTreeHtml, "Directory");
     }
   }
 
-  /* NOTE: Ensure margin is correct in Step when starting or stopping a list */
+  /* NOTE: Ensure margin is correct in Step */
+  :global(div.aside) starlight-file-tree {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
   :global(ol.step) starlight-file-tree:last-child {
     margin-bottom: 0rem;
   }
