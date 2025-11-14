@@ -1,0 +1,518 @@
+---
+title: Setting up python projects in the modern age
+description:
+  A quick reference (or guide?) to the modern tooling used to set up python
+  projects.
+pubDate: 11/14/2025
+tags: [python, dev, tooling]
+---
+
+## Yet Another Python Guide
+
+I was recently looking for some python project setup guides and references to
+share with new graduate students and was left somewhat underwhelmed by what I
+found. There are some really handy guides out there, but the python developer
+ecosystem has changed dramatically in the past few years leaving many of these
+guides somewhat dated (at least as short references).
+
+A great example is Kenneth Reitz's excellent
+[Structuring Your Project](https://docs.python-guide.org/writing/structure/),
+which is now over a decade old. There are, still, many useful pieces of
+information in there, but for new students, it is a bit overwhelming. How are
+they to know which information is antiquated versus not?
+
+So, I figured I'd try to write up a quick update. This is by no means
+exhaustive, but the following is generally what works for me for writing small
+packages, scripts, or CLIs.
+
+<Aside variant="tip">
+
+I really do encourage readers to read Kenneth Reitz's guide as well as whatever
+other resources they can find on the topic. Doing so will give you a greater
+appreciation for the tooling that we have available today.
+
+</Aside>
+
+## How I Used to do Things
+
+It might be worth discussing some of the ways I used to structure projects as a
+point of reference.
+
+### A Brief Journey Into the Past
+
+I first learned python in the mid 2010's through an astrophysics course. The
+professor had us use the Anaconda platform and Spyder to edit files. I was
+coming from Matlab and R, so Spyder was familiar as an IDE and Conda was
+familiar as a package manager. These assignments were generally just small
+scripts to process some dataset or do some math for homework problems.
+
+Eventually I started having specific projects in mind, which meant that I needed
+to learn how to organize my files. Learning about virtual environments,
+`setup.py`, `requirements.txt`, etc, was quite a shock to my system. My
+professors, some of whom had been using python for 2 decades, did not teach us
+any of this organization.
+
+I started tinkering with new projects after college, and PEPs
+[518](https://peps.python.org/pep-0518/) and
+[621](https://peps.python.org/pep-0621/) had been proposed. I found the package
+manager [`poetry`](https://python-poetry.org/) to work with these new changes.
+Much of the perceived complexity of past times had been handled by `poetry` and
+with `pyproject.toml` configurations.
+
+As I learned more, I found `poetry`'s handing of virtual environments somewhat
+confusing, so I stopped using it and switched to `rye`, which was then
+eventually gobbled up by `uv`.
+
+### What Did All of That Actually Look Like?
+
+Let's say I wanted to start a new project: a simple application that processes
+some data and prints information out on the command line. It might have a few
+modules that do different things to this data and a main entrypoint file that
+calls all of those modules from the command line.
+
+The file structure would look something like this...:
+
+<FileTree>
+
+- .venv/
+  - ...
+- process_data/
+  - step_1.py
+  - step_2.py
+  - step_3.py
+- main.py
+- requirements.txt
+- .python-version
+- ...
+
+</FileTree>
+
+...and I would have roughly used the following steps and tools to get there:
+
+1. `mkdir` to make the folder, `cd` to jump into it.
+2. [`pyenv`](https://github.com/pyenv/pyenv) to download the version of python I
+   wanted to use for the project, followed by `pyenv local [version]` to create
+   the `.python-version` file associated with the project.
+3. `python -m venv .venv` to create the `.venv/` folder for the project. At one
+   point I used [`pyenv-virtualenv`](https://github.com/pyenv/pyenv-virtualenv)
+   to manage this, though I frequently ran into python version-related issues,
+   probably because I didn't entirely know what I was doing.
+4. `source .venv/bin/activate` to activate the virtual environment and then
+   `pip install` whatever I needed for the project.
+5. I used [`pip-tools`](https://github.com/jazzband/pip-tools) to generate the
+   `requirements.txt` file.
+6. I'd write some code, generally bundling my scripts into a subfolder (above
+   called `process_data/`, for example). I'd import those modules into `main.py`
+   and run it with `python main.py`.
+
+This was obviously fairly convoluted, not flexible, and prone to breaking.
+
+What if I wanted to publish my package to PyPI? I would need to restructure the
+whole codebase and introduce more build tools. I did not test any code (which
+wasn't a problem of the code structure, per se) and I would again need to make
+changes to properly test these scripts.
+
+## A Modern Setup
+
+Enter, [Astral](https://astral.sh/), a small company building python tooling. So
+far, they have built 2 tools (`ruff` and `uv`) that have completely changed the
+python development ecosystem and are working on a third (`ty`).
+
+<Aside variant="info">
+
+I think there are legitimate concerns over "handing over" core parts of the
+development toolchain to a private company, though they have built in the open
+and seem committed to keeping their tools open source.
+
+It seems their monetization scheme revolves around
+[`Pyx`](https://astral.sh/pyx), so their open-source tools are likely (?) safe
+from a rug pull for the foreseeable future.
+
+</Aside>
+
+Very briefly, `uv` is a python "package and project manager", not all that
+unlike `poetry`. It manages dependencies, sets up folders, and edits project
+configuration.
+
+The significant advantage that I have personally found to using `uv` over other
+tools is that it is _rapid_ and unbelievable simple to use. The CLI not overly
+complicated but has enough options to do everything I need it to.
+
+While `poetry` worked most of the time, it uses a few non-standard configuration
+options and does not try to be an all-in-one tool. While I am a big fan of
+software that does one thing and one thing well, I actually think that this is a
+disadvantage for project management tools. Rust's `cargo`, for example, is the
+gold standard of developer tooling _because_ it is an all in one tool.
+
+`uv` is more or less approaching that "all in one" tool for python.
+
+### Project Structure With `uv`
+
+I use the following workflow to initialize and configure my projects:
+
+<ol class="step">
+
+<Step count={1}>
+
+`cd` into some `projects/` directory.
+
+</Step>
+
+<Step count={2}>
+
+Use `uv python` commands, like `uv python list` and `uv python install` to check
+for and install specific python versions, if needed.
+
+</Step>
+
+<Step count={3}>
+
+Create a new project with `uv init [name]` to create a new folder and project
+with `[name]`.
+
+`cd` into it.
+
+<Aside variant="tip">
+
+There are a variety of flags that can be passed here; check them with
+`uv init --help` and the
+[docs](https://docs.astral.sh/uv/reference/cli/#uv-init). More information can
+be found at
+[Creating projects](https://docs.astral.sh/uv/concepts/projects/init/).
+
+I frequently use `--package`, which is an extension of the default `--app`
+style. This wraps your code into a `src/` directory and sets a few other
+configuration flags that are convenient for CLIs or for uploading to PyPI.
+
+`--python [version]` will set the python version in the `.python-version` file.
+`uv python pin [version]` can do the same at any time.
+
+</Aside>
+
+<Aside variant="info">
+
+`uv init example_pkg --package --python 3.13` creates the following folder
+structure:
+
+<FileTree>
+
+- example_pkg/
+  - src/
+    - example_pkg/
+      - \_\_init\_\_.py
+  - pyproject.toml
+  - README.md
+  - .python-version
+  - .git/
+  - .gitignore
+
+</FileTree>
+
+Let's take a look at the contents of these files:
+
+```toml title="pyproject.toml"
+[project]
+name = "example-pkg"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "YOUR NAME", email = "YOUR EMAIL" } # from git config
+]
+requires-python = ">=3.13" # from `--python` or `uv python pin`
+dependencies = []
+
+[project.scripts]
+example-pkg = "example_pkg:main"
+
+[build-system]
+requires = ["uv_build>=0.8.17,<0.9.0"]
+build-backend = "uv_build"
+```
+
+Read
+[Writing your `pyproject.toml`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
+for more information about what metadata you can set in the file as well as
+other configuration options.
+
+```txt title=".python-version"
+3.13
+```
+
+```py title="__init__.py"
+def main() -> None:
+    print("Hello from example-pkg!")
+```
+
+Both the `README.md` and `.gitignore` are fairly straightforward.
+
+Again, note that many of these fields can be auto-filled on `uv init` with other
+flags.
+
+</Aside>
+
+</Step>
+
+<Step count={4}>
+
+Run your new application with `uv run example-pkg`.
+
+<Aside variant="info">
+
+`uv` has a special mechanism to run scripts, much like other package managers
+(e.g. `npm run`, which uses the `scripts` object in `package.json`). These can
+be invoked with `uv run [command]`.
+
+Note the `project.scripts` table in `pyproject.toml`:
+
+```toml title="pyproject.toml"
+[project.scripts]
+example-pkg = "example_pkg:main"
+```
+
+Calling `uv run example-pkg` will run the `main` module of `example-pkg`
+(equivalent to `import sys; from example_pkg import main; sys.exit(main())`),
+which in turn calls the `main()` function defined in `__init__.py`.
+
+</Aside>
+
+</Step>
+
+<Step count={5}>
+
+Add dependencies with `uv add [package]` or development dependencies with
+`uv add --dev [package]`.
+
+<Aside variant="info">
+
+Dependencies are stored as an array of strings (`dependencies = []`) in the
+`[project]` table in `pyproject.toml`.
+
+Development dependencies are stored as an array of strings (`dev = []`) under
+the `[optional-groups]` table, which is not created unless you explicitly add
+development dependencies.
+
+Note that the `[optional-groups]` spec of `pyproject.toml` is a recent (PEP 735)
+addition and may change.
+
+Read
+[Dependency Groups](https://packaging.python.org/en/latest/specifications/dependency-groups/)
+for more information; this is also how you would specify "extras" for your
+project, like `Polars` does to
+[support additional features](https://docs.pola.rs/user-guide/installation/).
+
+</Aside>
+
+<Aside variant="info">
+
+`uv add [package]` will create a few new things in the project:
+
+<FileTree>
+
+- example_pkg/
+  - src/
+    - example_pkg/
+      - \_\_init\_\_.py
+  - pyproject.toml
+  - README.md
+  - .python-version
+  - .git/
+  - .gitignore
+  - **uv.lock**
+  - **.venv/**
+
+</FileTree>
+
+`uv.lock` is akin to `requirements.txt`; it holds the precise version
+information of all the required dependencies for reproducible installations.
+Lockfiles are a complex subject; Read `uv`'s
+[docs](https://docs.astral.sh/uv/concepts/projects/layout/#the-lockfile) for
+more context.
+
+Similarly, the `.venv/` folder is a complex subject. It is the conventional name
+for the project environment folder and can also be managed by python with the
+`venv` module (recall `python -m venv .venv`).
+
+Traditionally, one would need to _activate_ the virtual environment with
+`source .venv/bin/activate`. `cat`-ing the output of this file shows that it
+does some `$PATH` shenanigans to allow the local project (and anything installed
+inside `.venv/`) to be available.
+
+If we use `uv run` to run our scripts, we don't need to worry about any of that!
+`uv` uses the correct environment, every time, out of the box.
+
+</Aside>
+
+</Step>
+
+<Step count={6}>
+
+The project is now ready to be used! At this point, I usually install and
+configure development dependencies, such as `mypy` (maybe `ty` or `pyrefly` in
+the future?), `ruff`, and `pytest`.
+
+</Step>
+
+</ol>
+
+---
+
+### Dev Tool Configuration
+
+For my own future reference (and maybe it'll help someone!), here is a decent
+starting configuration for a few of the developer tools I use for python.
+
+#### Ruff
+
+Install with `uv add --dev ruff`.
+
+I generally have a pretty strict linting setup for `ruff`; I like most of the
+default auto-formatting options but do make some changes.
+
+```toml title="pyproject.toml"
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".git-rewrite",
+  ".hg",
+  ".ipynb_checkpoints",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".pyenv",
+  ".pytest_cache",
+  ".pytype",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  ".vscode",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "site-packages",
+  "venv",
+]
+
+# Same as `black`
+line-length = 88
+indent-width = 4
+
+target-version = "py313" # varies as needed
+
+[tool.ruff.lint] # a fairly strict starting point
+select = ["ALL"]
+ignore = [
+  "AIR",
+  "ERA",
+  "FAST",
+  "YTT",
+  "COM",
+  "CPY",
+  "T10",
+  "DJ",
+  "EXE",
+  "INT",
+  "T20",
+  "TD",
+  "NPY",
+  "PD",
+  "W191",
+  "E111",
+  "E114",
+  "E117",
+  "E501",
+  "D203",
+  "D206",
+  "D212",
+  "D300",
+  "Q000",
+  "Q001",
+  "Q003",
+]
+fixable = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+```
+
+Run with `uv run ruff format` and `uv run ruff analyze`.
+
+I do not generally need to run `ruff` manually, as my
+[editor](https://docs.astral.sh/ruff/editors/setup/) formats on save and uses
+the `ruff server` to lint.
+
+#### Mypy
+
+Install with `uv add --dev mypy`.
+
+```toml title="pyproject.toml"
+[tool.mypy]
+python_version = "3.13" # varies as needed
+strict = true
+exclude = ["tests"] # not needed if tests/ outside src/ or if you want to check tests/
+pretty = true # pretty printing
+
+[[tool.mypy.overrides]] # handy for untyped imports, use sparingly
+module = ["some_untyped_module"]
+ignore_missing_imports = true
+```
+
+Run with `uv run mypy src/`.
+
+#### Pytest
+
+Install with `uv add --dev pytest`.
+
+I generally don't need to add any additional configuration to `pytest`, though
+it can be added to `pyproject.toml` in a `[tool.pytest.ini_options]` table.
+
+<Aside variant="tip">
+  
+If you are coming from the future, the configuration table may instead be
+`[tool.pytest]`.
+
+</Aside>
+
+Run with `uv run pytest tests/`.
+
+`pytest-cov` is a handy addition to generate coverage reports. It can be
+installed with `uv add --dev pytest-cov` and invoked with
+`uv run pytest --cov=example-pkg tests/`.
+
+If you want to always run this when you run `pytest`, you could either use a
+command runner like `make` or [`just`](https://github.com/casey/just), or
+configure the `adopts=` key in `pyproject.toml`:
+
+```toml title="pyproject.toml"
+[tool.pytest.ini_options]
+adopts = "--cov=example-pkg"
+```
+
+#### Other Handy Tools
+
+[`pre-commit`](https://pre-commit.com/) is a tool that I use occasionally but am
+trying to use more frequently. I recently discovered
+[`prek`](https://prek.j178.dev/), which uses the standard
+`.pre-commit-config.yaml` file and is _approaching_ a drop in replacement.
+
+As previously alluded to, `make` or `just` can be handy to standardize a
+workflow or to include in a GitHub action.
+
+[`tox`](https://tox.wiki/en/stable/) can be useful for testing against multiple
+versions of python.
+
+[`git-cliff`](https://git-cliff.org/) is a tool that I haven't used yet, but
+seems very interesting. It generates release information from git history.
