@@ -59,4 +59,7 @@
   a {
     @apply decoration-gruv-aqua decoration-2 hover:underline;
   }
+  a.external {
+    @apply inline-block;
+  }
 }
