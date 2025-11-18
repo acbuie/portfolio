@@ -6,6 +6,7 @@ import FileTree from "@/components/Posts/FileTree.astro";
 import PostMeta from "@/components/Posts/PostMeta.astro";
 import Step from "@/components/Posts/Step.astro";
 import Page from "@/layouts/Page.astro";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blogPosts");
@@ -32,7 +33,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
       @apply my-5;
     }
 
-    a {
+    a:not(.anchor-tag) {
       @apply underline;
     }
 
@@ -176,7 +177,14 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
     <PostMeta frontmatter={post.data} />
 
     <div class="post">
-      <Content components={{ Aside: Aside, FileTree: FileTree, Step: Step }} />
+      <Content
+        components={{
+          Aside: Aside,
+          Icon: Icon,
+          FileTree: FileTree,
+          Step: Step,
+        }}
+      />
     </div>
   </article>
 </Page>
