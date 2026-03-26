@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import expressiveCode from "astro-expressive-code";
 import mdx from "@astrojs/mdx";
@@ -81,4 +81,27 @@ export default defineConfig({
       iconDir: "src/assets/icons"
     }),
   ],
+
+  fonts: [{
+    provider: fontProviders.local(),
+    name: "Gaya",
+    cssVariable: "--font-gaya",
+    options: {
+      variants: [
+        {
+          style: "normal",
+          src: ['./src/assets/fonts/gaya-regular.woff2'],
+        },
+        {
+          style: "italic",
+          src: ["./src/assets/fonts/gaya-italic.woff2"]
+        }
+      ]
+    }
+  },
+  {
+    provider: fontProviders.fontsource(),
+    name: "Encode Sans",
+    cssVariable: "--font-encode-sans"
+  }]
 });
