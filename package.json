@@ -10,9 +10,9 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.8",
+    "@astrojs/mdx": "^5.0.3",
     "@tailwindcss/vite": "^4.0.10",
-    "astro": "^5.13.5",
+    "astro": "^6.1.1",
     "astro-expressive-code": "^0.41.3",
     "astro-icon": "^1.1.5",
     "class-variance-authority": "^0.7.1",
