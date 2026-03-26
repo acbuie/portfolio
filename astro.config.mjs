@@ -9,7 +9,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 
-import { ExternalLinkIcon } from "./src/icons/externalLink";
+import { ExternalLinkIcon } from "./src/assets/icons/externalLink";
 
 // https://astro.build/config
 export default defineConfig({
@@ -77,6 +77,8 @@ export default defineConfig({
     }),
 
     mdx(),
-    icon(),
+    icon({
+      iconDir: "src/assets/icons"
+    }),
   ],
 });
