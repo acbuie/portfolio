@@ -78,30 +78,32 @@ export default defineConfig({
 
     mdx(),
     icon({
-      iconDir: "src/assets/icons"
+      iconDir: "src/assets/icons",
     }),
   ],
 
-  fonts: [{
-    provider: fontProviders.local(),
-    name: "Gaya",
-    cssVariable: "--font-gaya",
-    options: {
-      variants: [
-        {
-          style: "normal",
-          src: ['./src/assets/fonts/gaya-regular.woff2'],
-        },
-        {
-          style: "italic",
-          src: ["./src/assets/fonts/gaya-italic.woff2"]
-        }
-      ]
-    }
-  },
-  {
-    provider: fontProviders.fontsource(),
-    name: "Encode Sans",
-    cssVariable: "--font-encode-sans"
-  }]
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: "Gaya",
+      cssVariable: "--font-gaya",
+      options: {
+        variants: [
+          {
+            style: "normal",
+            src: ["./src/assets/fonts/gaya-regular.woff2"],
+          },
+          {
+            style: "italic",
+            src: ["./src/assets/fonts/gaya-italic.woff2"],
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Encode Sans",
+      cssVariable: "--font-encode-sans",
+    },
+  ],
 });
