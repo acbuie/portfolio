@@ -10,44 +10,12 @@ import { definitions, FileIcons } from "./file-tree-icons";
 
 type IconType = keyof typeof FileIcons;
 
-// import type { IconifyJSON } from "@iconify/types/";
-//
-// import { readFileSync } from "node:fs";
-// import { iconToSVG, iconToHTML, getIconData } from "@iconify/utils";
-// import { join } from "node:path";
-//
-// const height = "1em";
-//
-// function generateSVG(
-//   prefix: string,
-//   name: string,
-//   // customisations: IconifyIconCustomisations = { height },
-// ) {
-//   // Find and load icon set
-//   const filename = join("./node_modules/@iconify-json/", prefix, "icons.json");
-//
-//   // Load file and parse it
-//   const iconSet: IconifyJSON = JSON.parse(readFileSync(filename, "utf8"));
-//
-//   // Get icon data
-//   const data = getIconData(iconSet, name);
-//   if (!data) {
-//     throw new AstroError(`No icon found with name: ${name}`);
-//   }
-//
-//   // Generate SVG
-//   const { attributes, body } = iconToSVG(data, {
-//     height,
-//   });
-//   return iconToHTML(body, attributes);
-// }
-//
-// declare module "vfile" {
-//   interface DataMap {
-//     directoryLabel: string;
-//   }
-// }
-//
+declare module "vfile" {
+  interface DataMap {
+    directoryLabel: string;
+  }
+}
+
 const folderIcon = makeSVGIcon(FileIcons["seti:folder"]);
 const defaultFileIcon = makeSVGIcon(FileIcons["seti:default"]);
 
