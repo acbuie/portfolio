@@ -5,15 +5,77 @@ const pageTitle = "Aidan Buie";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <div id="hero" class="flex grow items-center justify-center font-bold">
-    <div>
-      <h1 class="text-6xl md:text-9xl">aidan buie</h1>
-      <ul class="text-right text-lg md:text-xl">
-        <li><h2 class="">phd student</h2></li>
-        <li><h2 class="">planetary scientist</h2></li>
-        <li><h2 class="">artist</h2></li>
-        <li><h2 class="">educator</h2></li>
-      </ul>
-    </div>
-  </div>
-</BaseLayout>
+  <header class="mt-32">
+    <h1 class="font-gaya mb-4 text-left text-2xl tracking-widest">
+      AIDAN BUIE
+    </h1>
+    <p class="font-gaya text-6xl/20 font-black">
+      Planetary scientist, educator, software developer, among many other
+      things.
+    </p>
+
+    <ul
+      class="[&_h2]:font-gaya mt-16 flex justify-between [&_a]:text-lg [&_h2]:text-3xl [&_h2]:tracking-widest [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-y-2"
+    >
+      <li>
+        <h2>About</h2>
+        <ul>
+          <li>
+            <a href="/about">About</a>
+          </li>
+          <li>
+            <a href="/">Currently</a>
+          </li>
+          <li>
+            <a href="/">Colophon</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2>Musings</h2>
+        <ul>
+          <li>
+            <a href="/blog">Chronological</a>
+          </li>
+          <li>
+            <a href="/">Categories</a>
+          </li>
+          <li>
+            <a href="/tags">Tags</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2>Portfolio</h2>
+        <ul>
+          <li>
+            <a href="/">Projects</a>
+          </li>
+          <li>
+            <a href="/">Cartography</a>
+          </li>
+          <li>
+            <a href="/">Courses</a>
+          </li>
+          <li>
+            <a href="/">Photography</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2>Links</h2>
+        <ul>
+          <li>
+            <a href="/">GitHub</a>
+          </li>
+          <li>
+            <a href="/">LinkedIn</a>
+          </li>
+          <li>
+            <a href="/">Curriculum Vitae</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </header></BaseLayout
+>
