@@ -19,14 +19,36 @@
 <script>
   const button = document.querySelector("#toggle") as HTMLButtonElement;
 
+  // TODO: Cleanup
+  const css = document.createElement("style");
+  css.appendChild(
+    document.createTextNode(
+      `* {
+       -webkit-transition: none !important;
+       -moz-transition: none !important;
+       -o-transition: none !important;
+       -ms-transition: none !important;
+       transition: none !important;
+    }`,
+    ),
+  );
+
   button.addEventListener("click", () => {
     document.documentElement.classList.toggle("dark");
     if (document.documentElement.classList.contains("dark")) {
+      // Remove transition
+      document.head.appendChild(css);
+      // Toggle theme
       localStorage.setItem("theme", "dark");
-      document.documentElement.dataset.theme = "gruvbox-dark-soft";
+      // Redraw
+      window.getComputedStyle(css).opacity;
+      // Add transition
+      document.head.removeChild(css);
     } else {
+      document.head.appendChild(css);
       localStorage.setItem("theme", "light");
-      document.documentElement.dataset.theme = "gruvbox-light-soft";
+      window.getComputedStyle(css).opacity;
+      document.head.removeChild(css);
     }
   });
 </script>
