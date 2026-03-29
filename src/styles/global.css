@@ -8,9 +8,12 @@
   --font-gaya: var(--font-gaya);
   --font-sans: var(--font-encode-sans);
 
+  /* Text */
   --color-primary: #282828;
-  --color-secondary: #7c6f64;
-  --color-accent: #3c3836;
+  /* Same as text w/ opacity */
+  --color-secondary: oklch(0.2768 0 0 / 20%);
+  /* Very different accent */
+  --color-accent: #cc241d;
 
   --color-gruv-black: #282828;
   --color-gruv-red: #cc241d;
@@ -29,32 +32,32 @@
   --color-gruv-aqua-b: #8ec07c;
   --color-gruv-orange-b: #fe8019;
 
-  --color-bg: #f9f5d7;
+  --color-bg: #fffdf5;
   --color-bg-secondary: #a89984;
   --color-bg-accent: #ebdbb2;
-  --color-bg-code: #f2e5bc;
+  --color-bg-code: #32302f;
 }
 
 @layer theme {
   .dark {
-    --color-primary: #fbf1c7;
-    --color-secondary: #a89984;
-    --color-accent: #ebdbb2;
 
-    --color-bg: #1d2021;
+    --color-primary: #fffdf5;
+    --color-secondary: #a89984;
+    /* --color-accent: #ebdbb2; */
+
+    --color-bg: #282828;
     --color-bg-secondary: #7c6f64;
     --color-bg-accent: #3c3836;
-    --color-bg-code: #32302f;
   }
 }
 
 @layer base {
-  html {
-    @apply font-sans
+  body {
+    @apply font-sans text-primary bg-bg selection:bg-accent/40
   }
 
   a {
-    @apply decoration-gruv-aqua decoration-2 hover:underline;
+    @apply underline underline-offset-3 decoration-secondary duration-200 hover:transition-all ease-in decoration-2 hover:decoration-accent hover:underline-offset-5 hover:text-accent;
   }
 
   a.external {
