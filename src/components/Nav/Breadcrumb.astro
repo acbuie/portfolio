@@ -1,0 +1,54 @@
+---
+import voca from "voca";
+
+type Breadcrumb = {
+  title: string;
+  href: string;
+};
+
+const urlParts = Astro.url.pathname.split("/").filter(Boolean);
+const breadcrumbs: Breadcrumb[] = [{ title: "Home", href: "/" }];
+
+for (let i = 0; i < urlParts.length; i++) {
+  const urlPart = urlParts[i];
+  const lastHref = breadcrumbs[i].href;
+
+  let currentHref = "";
+  if (lastHref == "/") {
+    currentHref = lastHref + urlPart;
+  } else {
+    currentHref = `${lastHref}/${urlPart}`;
+  }
+
+  const breadcrumb: Breadcrumb = {
+    title: "",
+    href: "",
+  };
+
+  // TODO: Set title from content?
+  breadcrumb.title = voca.titleCase(urlPart);
+  breadcrumb.href = currentHref;
+
+  breadcrumbs.push(breadcrumb);
+}
+---
+
+<!-- FIXME: Vertical align with ThemeToggle button -->
+<nav class="font-black">
+  <span class="flex gap-x-2">
+    {
+      breadcrumbs.map((c, i) => (
+        <>
+          {!(i == breadcrumbs.length - 1) || c.title === "Home" ? (
+            <>
+              <a href={c.href}>{c.title}</a>
+              <span class="text-secondary">/</span>
+            </>
+          ) : (
+            <p>{c.title}</p>
+          )}
+        </>
+      ))
+    }
+  </span>
+</nav>
