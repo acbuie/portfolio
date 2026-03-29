@@ -19,6 +19,10 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
+  prefetch: {
+    prefetchAll: true,
+  },
+
   redirects: {
     "/posts": "/blog",
   },
