@@ -42,8 +42,9 @@
   .dark {
 
     --color-primary: #fffdf5;
-    --color-secondary: #a89984;
-    /* --color-accent: #ebdbb2; */
+    /* Same setup as light mode */
+    --color-secondary: oklch(0.9934 0.0107 95.16 / 20%);
+    /* --color-accent: same as light */
 
     --color-bg: #282828;
     --color-bg-secondary: #7c6f64;
