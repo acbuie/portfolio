@@ -130,7 +130,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
       @apply text-primary pb-3 text-left align-bottom font-bold;
     }
     tbody tr {
-      @apply border-b-bg-accent border-b-1;
+      @apply border-b-bg-accent border-b;
     }
     tbody tr:last-child {
       @apply border-0;
@@ -140,7 +140,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
       @apply py-2;
     }
     tfoot {
-      @apply border-t-1;
+      @apply border-t;
     }
 
     /* Figures */
@@ -156,7 +156,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
 
     /* Code */
     :not(pre) > code {
-      @apply bg-bg-code rounded px-2 py-0.25 text-[.85em];
+      @apply bg-bg-code rounded px-2 py-px text-[.85em];
     }
 
     div.expressive-code:not(div.aside *) {
