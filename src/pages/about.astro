@@ -1,10 +1,10 @@
 ---
-import Page from "@/layouts/Page.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const pageTitle = "About | Aidan Buie";
 ---
 
-<Page pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle}>
   <div class="text-lg [&>p]:my-5">
     <p>
       I am a PhD student in the Earth and Planetary Sciences department at the
@@ -28,4 +28,4 @@ const pageTitle = "About | Aidan Buie";
       about some of my past experiences!
     </p>
   </div>
-</Page>
+</BaseLayout>

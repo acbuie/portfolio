@@ -5,7 +5,7 @@ import { arrangePostCollection } from "@/utils/posts";
 
 import PostsList from "@/components/PostsList.astro";
 import TagArchive from "@/components/TagArchive.astro";
-import Page from "@/layouts/Page.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const rawPosts = await getCollection("blogPosts");
 const postsArray = arrangePostCollection(rawPosts);
@@ -13,7 +13,7 @@ const postsArray = arrangePostCollection(rawPosts);
 const pageTitle = "Musings | Aidan Buie";
 ---
 
-<Page pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle}>
   <PostsList postsArray={postsArray} />
   <TagArchive />
-</Page>
+</BaseLayout>

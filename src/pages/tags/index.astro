@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import { getTags } from "@/utils/posts";
 
 import Banner from "@/components/Banner.astro";
-import Page from "@/layouts/Page.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const rawPosts = await getCollection("blogPosts");
 const tags = getTags(rawPosts);
@@ -12,7 +12,7 @@ const tags = getTags(rawPosts);
 const pageTitle = "Tag Archive | Aidan Buie";
 ---
 
-<Page pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle}>
   <Banner>
     <h1 class="flex items-center gap-x-1 text-2xl font-bold">#Tag Archive</h1>
   </Banner>
@@ -25,4 +25,4 @@ const pageTitle = "Tag Archive | Aidan Buie";
       ))
     }
   </ul>
-</Page>
+</BaseLayout>

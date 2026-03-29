@@ -5,7 +5,7 @@ import Aside from "@/components/Posts/Aside.astro";
 import FileTree from "@/components/Posts/FileTree.astro";
 import PostMeta from "@/components/Posts/PostMeta.astro";
 import Step from "@/components/Posts/Step.astro";
-import Page from "@/layouts/Page.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
@@ -172,7 +172,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
   }
 </style>
 
-<Page pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle}>
   <article>
     <PostMeta frontmatter={post.data} />
 
@@ -187,4 +187,4 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
       />
     </div>
   </article>
-</Page>
+</BaseLayout>

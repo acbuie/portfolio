@@ -7,7 +7,7 @@ import { capitalize } from "@/utils/utils";
 import Banner from "@/components/Banner.astro";
 import PostsList from "@/components/PostsList.astro";
 import TagArchive from "@/components/TagArchive.astro";
-import Page from "@/layouts/Page.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
   const rawPosts = await getCollection("blogPosts");
@@ -33,7 +33,7 @@ const { tag } = Astro.params;
 const pageTitle = `${capitalize(tag)} | Aidan Buie`;
 ---
 
-<Page pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle}>
   <Banner>
     <h1 class="flex items-center gap-x-1 text-2xl font-bold">
       {`#${tag}`}
@@ -41,4 +41,4 @@ const pageTitle = `${capitalize(tag)} | Aidan Buie`;
   </Banner>
   <PostsList postsArray={postsArray} />
   <TagArchive />
-</Page>
+</BaseLayout>
