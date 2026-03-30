@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import expressiveCode from "astro-expressive-code";
 import mdx from "@astrojs/mdx";
 
 import icon from "astro-icon";
@@ -28,6 +27,10 @@ export default defineConfig({
   },
 
   markdown: {
+    shikiConfig: {
+      theme: "gruvbox-dark-soft",
+    },
+
     rehypePlugins: [
       rehypeSlug,
       [
@@ -68,18 +71,6 @@ export default defineConfig({
   },
 
   integrations: [
-    expressiveCode({
-      themes: ["gruvbox-dark-soft", "gruvbox-light-soft"],
-      styleOverrides: {
-        frames: {
-          terminalTitlebarBorderBottomColor: ({ theme }) =>
-            theme.colors["editorGroupHeader.tabsBorder"],
-        },
-        borderRadius: "0.75rem",
-        borderColor: ({ theme }) => theme.colors["editor.background"],
-      },
-    }),
-
     mdx(),
     icon({
       iconDir: "src/assets/icons",

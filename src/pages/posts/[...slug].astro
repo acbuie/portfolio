@@ -26,7 +26,7 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
   @reference "@/styles/global.css";
 
   .post {
-    @apply text-accent text-lg;
+    @apply text-lg;
 
     /* Single elements */
     p:not(div.aside *, blockquote *, ol.step *) {
@@ -156,35 +156,41 @@ const pageTitle = ` ${post.data.title} | Aidan Buie`;
 
     /* Code */
     :not(pre) > code {
-      @apply bg-bg-code rounded px-2 py-px text-[.85em];
+      @apply bg-secondary rounded px-2 py-px text-[.875em];
     }
 
-    div.expressive-code:not(div.aside *) {
+    /* max-w-[] caps code block on small screens */
+    .astro-code {
+      @apply max-w-[calc(100vw-5rem)] rounded-xl p-5 font-mono text-sm;
+    }
+
+    div.astro-code:not(div.aside *) {
       @apply my-5;
     }
 
     /* Aside */
     /* No bottom margin on last child Aside or EC within Step */
     & > ol.step div.aside:last-child,
-    & > ol.step div.expressive-code:last-child {
+    & > ol.step div.astro-code:last-child {
       @apply mb-0;
     }
   }
 </style>
 
 <BaseLayout pageTitle={pageTitle}>
-  <article>
-    <PostMeta frontmatter={post.data} />
-
-    <div class="post">
-      <Content
-        components={{
-          Aside: Aside,
-          Icon: Icon,
-          FileTree: FileTree,
-          Step: Step,
-        }}
-      />
-    </div>
-  </article>
+  <div class="flex justify-center">
+    <article class="md:w-2xl">
+      <PostMeta frontmatter={post.data} />
+      <div class="post">
+        <Content
+          components={{
+            Aside: Aside,
+            Icon: Icon,
+            FileTree: FileTree,
+            Step: Step,
+          }}
+        />
+      </div>
+    </article>
+  </div>
 </BaseLayout>

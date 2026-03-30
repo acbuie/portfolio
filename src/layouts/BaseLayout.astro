@@ -10,16 +10,19 @@ interface Props {
 const { pageTitle } = Astro.props;
 ---
 
-<!doctype html>
 <html lang="en" class="flex justify-center">
   <head>
     <BaseHead pageTitle={pageTitle} />
   </head>
-  <body class="w-5xl overflow-x-hidden antialiased">
-    <main class="min-h-screen">
+  <body
+    class="overflow-x-hidden antialiased max-md:px-10 md:max-lg:px-16 lg:w-4xl"
+  >
+    <div class="min-h-screen">
       <Header />
-      <slot />
-    </main>
+      <main>
+        <slot />
+      </main>
+    </div>
     <Footer />
   </body>
 </html>
