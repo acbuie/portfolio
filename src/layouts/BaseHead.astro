@@ -31,9 +31,7 @@ const { pageTitle } = Astro.props;
       window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
     document.documentElement.classList.add("dark");
-    document.documentElement.dataset.theme = "gruvbox-dark-soft";
   } else {
     document.documentElement.classList.remove("dark");
-    document.documentElement.dataset.theme = "gruvbox-light-soft";
   }
 </script>
