@@ -22,9 +22,9 @@ export default defineConfig({
     prefetchAll: true,
   },
 
-  redirects: {
-    "/posts": "/blog",
-  },
+  // redirects: {
+  //   "/posts": "/blog",
+  // },
 
   markdown: {
     shikiConfig: {
