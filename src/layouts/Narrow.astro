@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+interface Props {
+  pageTitle: string;
+}
+
+const { pageTitle } = Astro.props;
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <div class="flex justify-center">
+    <div class="md:w-2xl">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>
