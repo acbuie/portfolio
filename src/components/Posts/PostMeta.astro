@@ -14,9 +14,8 @@ const { frontmatter } = Astro.props;
 
 <h1 class="mb-5 text-4xl text-balance md:text-6xl">{frontmatter.title}</h1>
 
-<span
-  class="text-secondary flex flex-wrap items-center gap-x-2 text-sm md:text-lg"
->
+<hr />
+<span class="flex flex-wrap items-center gap-x-2 text-lg">
   {/* Pub Date */}
   <div>
     <p class="hidden md:block">
@@ -38,8 +37,6 @@ const { frontmatter } = Astro.props;
       }
     </p>
   </div>
-
-  <hr class="text-bg-accent h-0.5 grow" />
 
   {/* Tags */}
   <ul class="ml-auto flex flex-row gap-x-2.5">
@@ -74,6 +71,8 @@ const { frontmatter } = Astro.props;
     </div>
   )
 }
+<hr />
+
 {/* Description */}
 <p class="my-5 text-xl md:text-xl">
   {frontmatter.description}

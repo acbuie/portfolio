@@ -69,4 +69,9 @@
     /* height: 12px; */
     vertical-align: middle;
   }
+
+  hr {
+    @apply text-secondary my-5
+  }
+
 }
