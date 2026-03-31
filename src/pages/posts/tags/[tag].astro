@@ -6,7 +6,6 @@ import { capitalize } from "@/utils/utils";
 
 import Banner from "@/components/Banner.astro";
 import PostsList from "@/components/PostsList.astro";
-import TagArchive from "@/components/TagArchive.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
@@ -40,5 +39,6 @@ const pageTitle = `${capitalize(tag)} | Aidan Buie`;
     </h1>
   </Banner>
   <PostsList postsArray={postsArray} />
-  <TagArchive />
+
+  <a class="my-10 text-2xl" href="/posts/tags/"> #Tag Archive </a>
 </BaseLayout>
