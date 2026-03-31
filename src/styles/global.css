@@ -61,7 +61,12 @@
     @apply underline underline-offset-3 decoration-secondary duration-200 hover:transition-all ease-in decoration-2 hover:decoration-accent hover:underline-offset-5 hover:text-accent;
   }
 
-  a.external {
-    @apply inline-block;
+  a.external::after {
+    content: url('../assets/icons/externalLink.svg');
+    display: inline-block;
+    background-size: 0 0;
+    /* width: 12px; */
+    /* height: 12px; */
+    vertical-align: middle;
   }
 }

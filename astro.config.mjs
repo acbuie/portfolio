@@ -56,14 +56,9 @@ export default defineConfig({
       [
         rehypeExternalLinks,
         {
-          content: () => [ExternalLinkIcon],
-          // target: "_blank",
           rel: "noopener noreferrer nofollow",
           properties: {
             className: "external",
-          },
-          contentProperties: {
-            className: "size-4 inline-block",
           },
         },
       ],
