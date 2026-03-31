@@ -2,11 +2,9 @@
 import { getCollection } from "astro:content";
 
 import { arrangePostCollection, getTags } from "@/utils/posts";
-import { capitalize } from "@/utils/utils";
+import voca from "voca";
 
-import Banner from "@/components/Banner.astro";
-import PostsList from "@/components/PostsList.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import SubArchive from "@/layouts/SubArchive.astro";
 
 export async function getStaticPaths() {
   const rawPosts = await getCollection("blogPosts");
@@ -29,16 +27,14 @@ export async function getStaticPaths() {
 const { postsArray } = Astro.props;
 const { tag } = Astro.params;
 
-const pageTitle = `${capitalize(tag)} | Aidan Buie`;
+const pageTitle = `${voca.titleCase(tag)} | Aidan Buie`;
+const group = "Tag";
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-  <Banner>
-    <h1 class="flex items-center gap-x-1 text-2xl font-bold">
-      {`#${tag}`}
-    </h1>
-  </Banner>
-  <PostsList postsArray={postsArray} />
-
-  <a class="my-10 text-2xl" href="/posts/tags/"> #Tag Archive </a>
-</BaseLayout>
+<SubArchive
+  pageTitle={pageTitle}
+  group={group}
+  heading={voca.titleCase(tag)}
+  subheading="test"
+  postsArray={postsArray}
+/>

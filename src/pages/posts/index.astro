@@ -3,28 +3,24 @@ import { getCollection } from "astro:content";
 
 import { arrangePostCollection } from "@/utils/posts";
 
-import PostsList from "@/components/PostsList.astro";
+import ArchiveNav from "@/components/Blog/ArchiveNav.astro";
+import HeadingSub from "@/components/Blog/HeadingSub.astro";
+import PostsList from "@/components/Blog/PostsList.astro";
 import Narrow from "@/layouts/Narrow.astro";
 
 const rawPosts = await getCollection("blogPosts");
 const postsArray = arrangePostCollection(rawPosts);
 
 const pageTitle = "Musings | Aidan Buie";
+const heading = "My Latest Musings, Chronologically";
+const subheading =
+  "A chronological list of all my writing for this blog. Optionally, filter by category or view all tags in the archive.";
 ---
 
 <Narrow pageTitle={pageTitle}>
-  <h1 class="font-gaya mb-4 text-4xl">Musings, chronologically</h1>
+  <HeadingSub heading={heading} subheading={subheading} />
 
-  <p class="text-xl">
-    A chronological list of all my writing for this blog. Optionally, filter by
-    category or tag!
-  </p>
-
-  <hr class="text-secondary my-4" />
-  <span class="flex items-center justify-between">
-    <a href="/posts/tags/">#Tags</a>
-  </span>
-  <hr class="text-secondary my-4" />
+  <ArchiveNav />
 
   <PostsList postsArray={postsArray} />
 </Narrow>

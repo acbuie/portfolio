@@ -31,3 +31,7 @@ export function arrangePostCollection(
 export function getTags(rawPosts: CollectionEntry<"blogPosts">[]) {
   return [...new Set(rawPosts.map((post) => post.data.tags).flat())];
 }
+
+export function getCategories(rawPosts: CollectionEntry<"blogPosts">[]) {
+  return [...new Set(rawPosts.map((post) => post.data.category))];
+}

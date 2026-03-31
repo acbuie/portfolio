@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import ArchiveNav from "@/components/Blog/ArchiveNav.astro";
+import HeadingSub from "@/components/Blog/HeadingSub.astro";
+import PostsList from "@/components/Blog/PostsList.astro";
+import Narrow from "@/layouts/Narrow.astro";
+
+interface Props {
+  pageTitle: string;
+  group: string;
+  heading: string;
+  subheading?: string;
+  postsArray: {
+    year: string;
+    posts: CollectionEntry<"blogPosts">[];
+  }[];
+}
+
+const { pageTitle, group, heading, subheading, postsArray } = Astro.props;
+---
+
+<Narrow pageTitle={pageTitle}>
+  <h2 class="text-primary/50 mb-2 font-black">{group}</h2>
+
+  <HeadingSub heading={heading} subheading={subheading} />
+  <ArchiveNav />
+
+  <slot />
+
+  <PostsList postsArray={postsArray} />
+</Narrow>

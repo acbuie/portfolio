@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  postsArray: {
+    year: string;
+    posts: CollectionEntry<"blogPosts">[];
+  }[];
+}
+
+const { postsArray } = Astro.props;
+---
+
+<ol>
+  {
+    postsArray.map((d) => (
+      <>
+        <h2 class="font-gaya mb-7 text-3xl font-bold">{d.year}</h2>
+
+        <div class="grid grid-cols-[max-content_1fr] items-baseline gap-x-16 gap-y-32">
+          {d.posts.map((post) => (
+            <>
+              <p class="hidden md:block">
+                {post.data.pubDate.toLocaleDateString("default", {
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+              <p class="md:hidden">
+                {post.data.pubDate.toLocaleDateString("default", {
+                  month: "short",
+                  day: "numeric",
+                })}
+              </p>
+              <div>
+                <a href={`/posts/${post.id}`}>
+                  <h3 class="font-gaya text-3xl">{post.data.title}</h3>
+                </a>
+                <p class="mt-2 text-lg">{post.data.description}</p>
+              </div>
+            </>
+          ))}
+        </div>
+      </>
+    ))
+  }
+</ol>

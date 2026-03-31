@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+import voca from "voca";
+
+import { getCategories, getTags } from "@/utils/posts";
+
+import HeadingSub from "@/components/Blog/HeadingSub.astro";
+import Narrow from "@/layouts/Narrow.astro";
+
+const rawPosts = await getCollection("blogPosts");
+const tags = getTags(rawPosts);
+const categories = getCategories(rawPosts);
+
+const pageTitle = "Tag Archive | Aidan Buie";
+const heading = "Archive";
+const subheading = "Select posts by category or tag.";
+---
+
+<Narrow pageTitle={pageTitle}>
+  <HeadingSub heading={heading} subheading={subheading} />
+
+  <h3>Categories</h3>
+  <ul>
+    {
+      categories.sort().map((category) => (
+        <li>
+          <a
+            href={`/posts/archive/${category}`}
+          >{`${voca.titleCase(category)}`}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h3>Tags</h3>
+  <ul>
+    {
+      tags.sort().map((tag) => (
+        <li>
+          <a href={`/posts/archive/${tag}`}>{`#${tag}`}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Narrow>
+
+<style>
+  @reference "@/styles/global.css";
+
+  h3 {
+    @apply font-gaya mt-8 mb-2 text-2xl tracking-wide;
+  }
+
+  ul {
+    @apply flex gap-x-4 text-lg;
+  }
+</style>

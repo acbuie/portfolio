@@ -1,0 +1,21 @@
+---
+import voca from "voca";
+
+import { getCategories } from "@/utils/posts";
+import { getCollection } from "astro:content";
+
+const rawPosts = await getCollection("blogPosts");
+const categories = getCategories(rawPosts);
+---
+
+<hr class="text-secondary my-4" />
+<span class="flex items-center gap-x-16">
+  <a href="/posts/">Latest</a>
+  {
+    categories.map((c) => (
+      <a href={`/posts/archive/${c}`}>{voca.titleCase(c)}</a>
+    ))
+  }
+  <a href="/posts/archive/">Archive</a>
+</span>
+<hr class="text-secondary my-4" />

@@ -12,7 +12,7 @@ const blogPosts = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     updateDate: z.coerce.date().optional(),
-    category: z.enum(["Tutorial", "Note", "Long Read"]),
+    category: z.enum(["tutorial", "note", "long read"]),
     tags: z.array(z.string()).max(3, "Must have 3 or fewer tags."),
   }),
 });

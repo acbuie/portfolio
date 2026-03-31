@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+
+import { arrangePostCollection, getCategories } from "@/utils/posts";
+import voca from "voca";
+
+import SubArchive from "@/layouts/SubArchive.astro";
+
+export async function getStaticPaths() {
+  const rawPosts = await getCollection("blogPosts");
+  const categories = getCategories(rawPosts);
+
+  return categories.map((category) => {
+    const filteredPosts = rawPosts.filter((post) =>
+      post.data.category.includes(category),
+    );
+
+    const postsArray = arrangePostCollection(filteredPosts);
+
+    return {
+      params: { category },
+      props: { postsArray: postsArray },
+    };
+  });
+}
+
+const { postsArray } = Astro.props;
+const { category } = Astro.params;
+
+const pageTitle = `${voca.titleCase(category)} | Aidan Buie`;
+const group = "Category";
+---
+
+<SubArchive
+  pageTitle={pageTitle}
+  group={group}
+  heading={voca.titleCase(category)}
+  subheading="test"
+  postsArray={postsArray}
+/>
