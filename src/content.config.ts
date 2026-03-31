@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { z } from "astro/zod"
+import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
 const blogPosts = defineCollection({
@@ -12,6 +12,7 @@ const blogPosts = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     updateDate: z.coerce.date().optional(),
+    category: z.enum(["Tutorial", "Note", "Long Read"]),
     tags: z.array(z.string()).max(3, "Must have 3 or fewer tags."),
   }),
 });
