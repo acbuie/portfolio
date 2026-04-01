@@ -1,0 +1,59 @@
+---
+import Narrow from "@/layouts/Narrow.astro";
+
+const pageTitle = "Colophon | Aidan Buie";
+---
+
+<Narrow pageTitle={pageTitle}>
+  <h1 class="font-gaya mb-12 text-4xl">Colophon</h1>
+  <p>
+    All content on this site was created by me, Aidan Buie. No AI was consulted
+    or utilized to create or program any part of this web page nor to produce
+    the content it holds. This website will always hold my own 100% human made
+    content.
+  </p>
+  <p>
+    I am not a web developer (though I am adding new skills to my toolbelt!).
+    For simplicity, this site uses only a handful of web technologies for its
+    construction:
+    <a
+      rel="noopener noreferrer nofollow"
+      target="_blank"
+      href="https://astro.build/"
+      class="external">Astro</a
+    >,
+    <a
+      class="external"
+      rel="noopener noreferrer nofollow"
+      target="_blank"
+      href="https://tailwindcss.com/">TailwindCSS</a
+    >, and a tiny bit of TypeScript. The heading text font is <a
+      class="external font-gaya"
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      href="https://www.outofthedark.swiss/gaya">Gaya</a
+    > (trial version available for personal use), while the body text is <a
+      class="external"
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      href="https://fonts.google.com/specimen/Encode+Sans?preview.script=Latn"
+      >Encode Sans</a
+    >.
+  </p>
+  <p>
+    The source code is available on <a
+      class="external"
+      rel="noopener noreferrer nofollow"
+      target="_blank"
+      href="https://github.com/acbuie/portfolio/">GitHub</a
+    >.
+  </p>
+</Narrow>
+
+<style>
+  @reference "@/styles/global.css";
+
+  p {
+    @apply my-6 text-xl text-pretty;
+  }
+</style>
