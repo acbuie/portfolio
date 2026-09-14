@@ -62,7 +62,7 @@
   }
 
   a.external::after {
-    content: url('../assets/icons/externalLink.svg');
+    content: url("../assets/icons/externalLink.svg");
     display: inline-block;
     background-size: 0 0;
     /* width: 12px; */
