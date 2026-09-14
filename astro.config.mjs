@@ -74,7 +74,7 @@ export default defineConfig({
     {
       provider: fontProviders.local(),
       name: "Gaya",
-      cssVariable: "--font-gaya",
+      cssVariable: "--font-heading",
       options: {
         variants: [
           {

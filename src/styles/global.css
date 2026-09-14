@@ -5,7 +5,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-gaya: var(--font-gaya);
+  --font-heading: var(--font-heading);
   --font-sans: var(--font-encode-sans);
 
   /* Text */
@@ -54,11 +54,11 @@
 
 @layer base {
   body {
-    @apply font-sans text-primary bg-bg selection:bg-accent/40
+    @apply text-primary bg-bg selection:bg-accent/40 font-sans;
   }
 
   a {
-    @apply underline underline-offset-3 decoration-secondary duration-200 hover:transition-all ease-in decoration-2 hover:decoration-accent hover:underline-offset-5 hover:text-accent;
+    @apply decoration-secondary hover:decoration-accent hover:text-accent underline decoration-2 underline-offset-3 duration-200 ease-in hover:underline-offset-5 hover:transition-all;
   }
 
   a.external::after {
@@ -71,7 +71,7 @@
   }
 
   hr {
-    @apply text-secondary my-5
+    @apply text-secondary my-5;
   }
 
 }
