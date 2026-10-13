@@ -18,7 +18,7 @@ const { frontmatter } = Astro.props;
 <span class="flex flex-wrap items-center gap-x-2 text-lg">
   {/* Pub Date */}
   <div>
-    <p class="hidden md:block">
+    <p class="hidden sm:block">
       {
         frontmatter.pubDate.toLocaleDateString("default", {
           day: "numeric",
@@ -27,7 +27,7 @@ const { frontmatter } = Astro.props;
         })
       }
     </p>
-    <p class="md:hidden">
+    <p class="sm:hidden">
       {
         frontmatter.pubDate.toLocaleDateString("default", {
           day: "numeric",
@@ -54,14 +54,14 @@ const { frontmatter } = Astro.props;
 {
   frontmatter.updateDate && (
     <div class="text-secondary mt-3 flex flex-row justify-between text-sm md:text-lg">
-      <p class="hidden md:block">
+      <p class="hidden sm:block">
         {`Updated ${frontmatter.pubDate.toLocaleDateString("default", {
           day: "numeric",
           month: "long",
           year: "numeric",
         })}`}
       </p>
-      <p class="md:hidden">
+      <p class="sm:hidden">
         {`Updated ${frontmatter.pubDate.toLocaleDateString("default", {
           day: "numeric",
           month: "short",

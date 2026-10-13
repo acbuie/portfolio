@@ -20,13 +20,13 @@ const { postsArray } = Astro.props;
         <div class="grid grid-cols-[max-content_1fr] items-baseline gap-x-16 gap-y-32">
           {d.posts.map((post) => (
             <>
-              <p class="hidden md:block">
+              <p class="hidden sm:block">
                 {post.data.pubDate.toLocaleDateString("default", {
                   month: "long",
                   day: "numeric",
                 })}
               </p>
-              <p class="md:hidden">
+              <p class="sm:hidden">
                 {post.data.pubDate.toLocaleDateString("default", {
                   month: "short",
                   day: "numeric",
