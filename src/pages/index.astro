@@ -72,47 +72,49 @@ const navLinks: NavLink = [
 
 <BaseLayout pageTitle={pageTitle}>
   <header class="mt-32">
-    <h1 class="font-heading mb-4 text-left text-2xl tracking-widest italic">
+    <h1
+      class="font-heading mb-4 text-left text-lg tracking-widest italic sm:text-2xl"
+    >
       AIDAN BUIE
     </h1>
-    <p class="font-heading text-6xl/20 font-black">
+    <p class="font-heading text-3xl font-black sm:text-6xl/20">
       Planetary scientist, educator, software developer, among many other
       things.
     </p>
-
-    <ul class="mt-16 flex justify-between">
-      {
-        navLinks.map((nav) => (
-          <li>
-            <h2 class="font-heading mb-4 text-3xl tracking-widest">
-              {nav.heading}
-            </h2>
-            <ul class="flex flex-col gap-y-2">
-              {nav.items.map((item) => (
-                <li class="flex items-center gap-x-1">
-                  <Icon name={item.icon} class="size-5" />
-                  <a
-                    class="text-lg"
-                    target={
-                      item.title === "GitHub" || item.title === "LinkedIn"
-                        ? "_blank"
-                        : null
-                    }
-                    rel={
-                      item.title === "GitHub" || item.title === "LinkedIn"
-                        ? "nofollow noopener noreferrer"
-                        : null
-                    }
-                    href={item.href}
-                  >
-                    {item.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))
-      }
-    </ul>
   </header>
+
+  <ul class="mt-16 sm:flex sm:justify-between">
+    {
+      navLinks.map((nav) => (
+        <li>
+          <h2 class="font-heading mb-4 text-2xl tracking-widest max-sm:mt-12 sm:text-3xl">
+            {nav.heading}
+          </h2>
+          <ul class="flex flex-col gap-y-2">
+            {nav.items.map((item) => (
+              <li class="flex items-center gap-x-1">
+                <Icon name={item.icon} class="size-5" />
+                <a
+                  class="text-lg"
+                  target={
+                    item.title === "GitHub" || item.title === "LinkedIn"
+                      ? "_blank"
+                      : null
+                  }
+                  rel={
+                    item.title === "GitHub" || item.title === "LinkedIn"
+                      ? "nofollow noopener noreferrer"
+                      : null
+                  }
+                  href={item.href}
+                >
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
 </BaseLayout>
