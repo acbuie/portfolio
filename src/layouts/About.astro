@@ -1,0 +1,15 @@
+---
+import MainTitle from "@/components/MainTitle.astro";
+import SimpleText from "@/components/SimpleText.astro";
+import Narrow from "@/layouts/Narrow.astro";
+
+// const pageTitle = "About | Aidan Buie";
+const { pageTitle, headerTitle } = Astro.props;
+---
+
+<Narrow pageTitle={pageTitle}>
+  <MainTitle title={headerTitle} />
+  <SimpleText>
+    <slot />
+  </SimpleText>
+</Narrow>

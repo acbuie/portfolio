@@ -1,34 +1,30 @@
 ---
-import MainTitle from "@/components/MainTitle.astro";
-import SimpleText from "@/components/SimpleText.astro";
-import Narrow from "@/layouts/Narrow.astro";
+import About from "@/layouts/About.astro";
 
 const pageTitle = "About | Aidan Buie";
+const headerTitle = "About";
 ---
 
-<Narrow pageTitle={pageTitle}>
-  <MainTitle title="About" />
-  <SimpleText>
-    <p>
-      I am a PhD student in the Earth and Planetary Sciences department at the
-      University of New Mexico. I have a background in geology, environmental
-      science (concentrated in ecology), and GIS.
-    </p>
-    <p>
-      I do small-scale (big picture) mapping of planetary surfaces but mostly of
-      Mars and Earth. GIS and software tools are somewhat lacking in this field,
-      so I am working to bridge the gap between software engineers, scientists,
-      and GIS folk.
-    </p>
-    <p>
-      Non-professionally, I also enjoy taking photos. Once upon a time I drew
-      and made art. Nowadays, that part of my brain has instead been put to work
-      when I make maps or figures. I am by no means a designer and am always
-      looking to improve!
-    </p>
-    <p>
-      Take a look at my <a>CV</a> for more detailed information about some of my
-      past experiences!
-    </p>
-  </SimpleText>
-</Narrow>
+<About pageTitle={pageTitle} headerTitle={headerTitle}>
+  <p>
+    I am a PhD student in the Earth and Planetary Sciences department at the
+    University of New Mexico. I have a background in geology, environmental
+    science (concentrated in ecology), and GIS.
+  </p>
+  <p>
+    I do small-scale (big picture) mapping of planetary surfaces but mostly of
+    Mars and Earth. GIS and software tools are somewhat lacking in this field,
+    so I am working to bridge the gap between software engineers, scientists,
+    and GIS folk.
+  </p>
+  <p>
+    Non-professionally, I also enjoy taking photos. Once upon a time I drew and
+    made art. Nowadays, that part of my brain has instead been put to work when
+    I make maps or figures. I am by no means a designer and am always looking to
+    improve!
+  </p>
+  <p>
+    Take a look at my <a>CV</a> for more detailed information about some of my past
+    experiences!
+  </p>
+</About>
