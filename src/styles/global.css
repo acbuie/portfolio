@@ -40,7 +40,6 @@
 
 @layer theme {
   .dark {
-
     --color-primary: #fffdf5;
     /* Same setup as light mode */
     --color-secondary: oklch(0.9934 0.0107 95.16 / 20%);
@@ -62,16 +61,18 @@
   }
 
   a.external::after {
-    content: url("../assets/icons/externalLink.svg");
+    content: "";
     display: inline-block;
-    background-size: 0 0;
-    /* width: 12px; */
-    /* height: 12px; */
-    vertical-align: middle;
+    background-color: currentColor;
+    width: 0.8em;
+    height: 0.8em;
+    vertical-align: top;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-image: url("/src/assets/icons/externalLink.svg")
   }
 
   hr {
     @apply text-secondary my-5;
   }
-
 }
