@@ -14,6 +14,12 @@ const config = {
         parser: "astro",
       },
     },
+    {
+      files: "*.svg",
+      options: {
+        parser: "html",
+      },
+    },
   ],
 };
 
