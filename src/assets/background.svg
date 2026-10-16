@@ -20,7 +20,7 @@
     >
       <feTurbulence
         type="fractalNoise"
-        baseFrequency="0.131"
+        baseFrequency="0.102"
         numOctaves="4"
         seed="15"
         stitchTiles="stitch"
@@ -31,10 +31,10 @@
         result="turbulence"
       ></feTurbulence>
       <feSpecularLighting
-        surfaceScale="21"
-        specularConstant="1.1"
+        surfaceScale="23"
+        specularConstant="0.2"
         specularExponent="20"
-        lighting-color="#d0021b"
+        lighting-color="#cc241d"
         x="0%"
         y="0%"
         width="100%"
@@ -42,7 +42,7 @@
         in="turbulence"
         result="specularLighting"
       >
-        <feDistantLight azimuth="3" elevation="124"></feDistantLight>
+        <feDistantLight azimuth="3" elevation="130"></feDistantLight>
       </feSpecularLighting>
     </filter>
   </defs>
@@ -50,7 +50,7 @@
   <rect
     width="700"
     height="700"
-    fill="#d0021b"
+    fill="#cc241d"
     filter="url(#nnnoise-filter)"
   ></rect>
 </svg>

@@ -14,7 +14,9 @@ const { pageTitle } = Astro.props;
   <head>
     <BaseHead pageTitle={pageTitle} />
   </head>
-  <body class="overflow-x-hidden antialiased">
+  <body
+    class="overflow-x-hidden bg-[url(/src/assets/background.svg)] bg-repeat antialiased"
+  >
     <div class="min-h-screen w-screen max-sm:px-10 sm:max-lg:px-16 lg:w-4xl">
       <Header />
       <main>
